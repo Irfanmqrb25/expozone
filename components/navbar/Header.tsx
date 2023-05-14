@@ -5,7 +5,7 @@ import { Fredoka } from "next/font/google";
 import { Patrick_Hand } from "next/font/google";
 import Link from "next/link";
 
-import { AiOutlineUser } from "react-icons/ai";
+import { AiOutlineUser, AiOutlineHome } from "react-icons/ai";
 import { IoCubeOutline } from "react-icons/io5";
 import { BiNews } from "react-icons/bi";
 import { MdOutlineFeaturedPlayList, MdOutlineSell } from "react-icons/md";
@@ -110,10 +110,11 @@ const Header = () => {
             )}
             <ul
               className={clsx(
-                "flex flex-row text-sm",
+                "flex flex-row text-sm tracking-wider",
                 isScrolled ? "space-x-16" : "space-x-24"
               )}
             >
+              <Link href="/home">HOME</Link>
               <p>FEATURES</p>
               <p>NEW ARRIVALS</p>
               <p>PRODUCTS</p>
@@ -167,7 +168,7 @@ const Header = () => {
           className={clsx(
             "bg-black text-white fixed w-full text-lg tracking-wider px-3 flex flex-col justify-evenly",
             isOpen
-              ? " h-[300px] ease-in-out duration-150"
+              ? " h-[350px] ease-in-out duration-150"
               : "h-0 ease-in-out duration-200",
             patrickHand.className
           )}
@@ -177,6 +178,10 @@ const Header = () => {
               <li className="flex items-center gap-4 p-3 hover:text-[#23A094]">
                 <AiOutlineUser />
                 <span>Login</span>
+              </li>
+              <li className="flex items-center gap-4 p-3  hover:text-[#23A094]">
+                <AiOutlineHome />
+                <span>Home</span>
               </li>
               <li className="flex items-center gap-4 p-3  hover:text-[#23A094]">
                 <MdOutlineFeaturedPlayList />
