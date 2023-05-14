@@ -71,7 +71,12 @@ const Navbar = () => {
               <span>1</span>
             </div>
           </div>
-          <div className="flex items-center md:gap-2">
+          <div
+            className={clsx(
+              "items-center md:gap-2",
+              isOpen ? "hidden" : "flex"
+            )}
+          >
             <div className="w-[1.5px] bg-[#e0e0e0] h-9 md:mr-4 hidden md:block"></div>
             <Button
               onClick={() => router.push("/login")}
@@ -86,7 +91,7 @@ const Navbar = () => {
             >
               Sign up
             </Button>
-            <div className="block lg:hidden">
+            <div className="z-10 block lg:hidden">
               <Hamburger
                 toggled={isOpen}
                 toggle={handleToggled}
@@ -103,7 +108,7 @@ const Navbar = () => {
       {isOpen && (
         <div
           className={clsx(
-            "bg-black text-white fixed w-full text-lg tracking-wider flex flex-col gap-5 overflow-y-scroll",
+            "bg-black text-white fixed w-full text-lg tracking-wider flex flex-col gap-5 overflow-y-scroll z-10",
             isOpen
               ? " h-screen ease-in duration-500"
               : "h-0 ease-out duration-200",
@@ -112,7 +117,7 @@ const Navbar = () => {
         >
           <div
             onClick={handleToggled}
-            className="fixed flex items-center w-full px-2 bg-black"
+            className="fixed flex items-center w-full px-2 py-2 bg-black"
           >
             <Hamburger
               toggled={isOpen}
@@ -122,7 +127,7 @@ const Navbar = () => {
             />
             <span>Menu</span>
           </div>
-          <div className="flex flex-col gap-3 px-5 mt-16">
+          <div className="flex flex-col gap-3 px-5 mt-20">
             <div className="flex justify-between">
               <Button className="w-[47%] bg-[#23A094] hover:bg-[#23A094]">
                 Sign in
