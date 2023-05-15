@@ -90,7 +90,7 @@ const Categories = () => {
 
   return (
     <div className="px-16 py-3">
-      <div className="flex flex-row items-center justify-between gap-2 overflow-x-scroll xl:overflow-hidden xl:gap-0">
+      <div className="flex flex-row items-center justify-between gap-2 overflow-x-scroll lg:overflow-x-hidden xl:gap-0">
         <div className="flex items-center gap-2 px-3 py-2 border border-neutral-300 rounded-xl">
           <MdFilterListAlt />
           <span className="text-sm">Filter</span>

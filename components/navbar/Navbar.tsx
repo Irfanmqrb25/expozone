@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { Fredoka } from "next/font/google";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import clsx from "clsx";
 import {
@@ -13,6 +13,8 @@ import {
   MdOutlineMusicNote,
   MdOutlineGames,
   MdFilterListAlt,
+  MdLogout,
+  MdOutlineSettings,
 } from "react-icons/md";
 import { HiShoppingCart, HiOutlineDotsCircleHorizontal } from "react-icons/hi";
 import { FiHelpCircle } from "react-icons/fi";
@@ -22,12 +24,35 @@ import { IoFastFoodOutline } from "react-icons/io5";
 import { GiClothes } from "react-icons/gi";
 import { AiOutlineHeart, AiOutlineStar, AiOutlineShop } from "react-icons/ai";
 import { Turn as Hamburger } from "hamburger-react";
+import { signOut } from "next-auth/react";
 
 import Container from "../Container";
 import Searchbar from "./Searchbar";
 import Categories from "./Categories";
 import { Button } from "../ui/button";
 import MenuItem from "./MenuItem";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import { User as UserType } from "@/types";
+
+import {
+  LogOut,
+  User,
+  Heart,
+  Star,
+  Store,
+  ShoppingBag,
+  ShoppingCart,
+  HelpCircle,
+} from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const fredoka = Fredoka({
   weight: ["300", "400", "500", "600"],
@@ -35,12 +60,19 @@ const fredoka = Fredoka({
   variable: "--fredoka-font",
 });
 
-const Navbar = () => {
+interface NavbarProps {
+  session?: UserType;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ session }) => {
   const router = useRouter();
   const [isOpen, setOpen] = useState(false);
   const handleToggled = () => {
     setOpen(!isOpen);
   };
+  useEffect(() => {
+    console.log(session);
+  });
   return (
     <div
       className={clsx(
@@ -78,19 +110,84 @@ const Navbar = () => {
             )}
           >
             <div className="w-[1.5px] bg-[#e0e0e0] h-9 md:mr-4 hidden md:block"></div>
-            <Button
-              onClick={() => router.push("/login")}
-              variant="outline"
-              className="hover:bg-[#006E7F] hover:text-white py-[6px] hidden lg:block"
-            >
-              Sign in
-            </Button>
-            <Button
-              onClick={() => router.push("/register")}
-              className="py-[6px] hidden lg:block"
-            >
-              Sign up
-            </Button>
+            {session ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild className="cursor-pointer">
+                  <div className="items-center hidden gap-2 md:flex">
+                    <Avatar className="w-8 h-8">
+                      <AvatarImage
+                        src={session?.image || "/assets/blank-user.jpg"}
+                        alt="image user"
+                      />
+                    </Avatar>
+                    <span className="hidden lg:block">{session?.name}</span>
+                  </div>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-52" align="start">
+                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuGroup>
+                    <DropdownMenuItem className="cursor-pointer">
+                      <User className="w-4 h-4 mr-2" />
+                      <span>Profile</span>
+                    </DropdownMenuItem>
+                  </DropdownMenuGroup>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuGroup>
+                    <DropdownMenuItem className="cursor-pointer">
+                      <Heart className="w-4 h-4 mr-2" />
+                      <span>Wishlist</span>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem className="cursor-pointer">
+                      <Star className="w-4 h-4 mr-2" />
+                      <span>Review</span>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem className="cursor-pointer">
+                      <ShoppingBag className="w-4 h-4 mr-2" />
+                      <span>Favorite Shop</span>
+                    </DropdownMenuItem>
+                  </DropdownMenuGroup>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem className="cursor-pointer">
+                    <Store className="w-4 h-4 mr-2" />
+                    <span>My Store</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="cursor-pointer">
+                    <ShoppingCart className="w-4 h-4 mr-2" />
+                    <span>My Order</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="cursor-pointer">
+                    <HelpCircle className="w-4 h-4 mr-2" />
+                    <span>Help</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem
+                    onClick={() => signOut()}
+                    className="cursor-pointer"
+                  >
+                    <LogOut className="w-4 h-4 mr-2" />
+                    <span>Log out</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <>
+                <Button
+                  onClick={() => router.push("/login")}
+                  variant="outline"
+                  className="hover:bg-[#006E7F] hover:text-white py-[6px] hidden lg:block"
+                >
+                  Sign in
+                </Button>
+                <Button
+                  onClick={() => router.push("/register")}
+                  className="py-[6px] hidden lg:block"
+                >
+                  Sign up
+                </Button>
+              </>
+            )}
+
             <div className="z-10 block lg:hidden">
               <Hamburger
                 toggled={isOpen}
@@ -128,17 +225,36 @@ const Navbar = () => {
             <span>Menu</span>
           </div>
           <div className="flex flex-col gap-3 px-5 mt-20">
-            <div className="flex justify-between">
-              <Button className="w-[47%] bg-[#23A094] hover:bg-[#23A094]">
-                Sign in
-              </Button>
-              <Button
-                variant="outline"
-                className="w-[47%] hover:bg-transparent hover:text-white"
-              >
-                Sign up
-              </Button>
-            </div>
+            {session ? (
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <Avatar className="w-8 h-8">
+                    <AvatarImage
+                      src={session?.image || "/assets/blank-user.jpg"}
+                      alt="@shadcn"
+                    />
+                  </Avatar>
+                  <span className="text-xl">{session?.name}</span>
+                </div>
+                <MdOutlineSettings className="text-2xl hover:text-[#23A094]" />
+              </div>
+            ) : (
+              <div className="flex justify-between">
+                <Button
+                  onClick={() => router.push("/login")}
+                  className="w-[47%] bg-[#23A094] hover:bg-[#23A094]"
+                >
+                  Sign in
+                </Button>
+                <Button
+                  onClick={() => router.push("/register")}
+                  variant="outline"
+                  className="w-[47%] hover:bg-transparent hover:text-white"
+                >
+                  Sign up
+                </Button>
+              </div>
+            )}
             <hr />
           </div>
           <div className="flex flex-col gap-3 px-5">
@@ -173,6 +289,13 @@ const Navbar = () => {
                 label="Customer Service"
               />
               <MenuItem href="" icon={FiHelpCircle} label="Help" />
+              <div
+                onClick={() => signOut()}
+                className="flex flex-row items-center gap-4 hover:text-[#006E7F]"
+              >
+                <MdLogout className="text-xl" />
+                <span className="font-light">Logout</span>
+              </div>
             </div>
           </div>
         </div>

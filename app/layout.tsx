@@ -1,5 +1,6 @@
-import Navbar from "@/components/navbar/Navbar";
 import "./globals.css";
+import ClientComponent from "@/components/ClientComponent";
+import ToasterProvider from "@/provider/ToasterProvider";
 
 export const metadata = {
   title: "Expozone",
@@ -14,7 +15,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <ClientComponent>
+          <ToasterProvider />
+        </ClientComponent>
+        <div>{children}</div>
+      </body>
     </html>
   );
 }
