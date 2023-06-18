@@ -48,13 +48,13 @@ const LandingPage = () => {
             number one.
           </p>
           <Link
-            href="/"
+            href="/login"
             className={clsx(
               "bg-black text-white py-2 px-5 rounded-sm w-1/2 lg:w-auto tracking-wider text-lg border-2 border-white ease-in-out duration-300 shadow-button",
               patrickHand.className
             )}
           >
-            See Product
+            Get Started
           </Link>
         </div>
         <div className="bg-[#FCE700] w-full lg:w-1/2 h-[500px] flex justify-center my-auto relative">

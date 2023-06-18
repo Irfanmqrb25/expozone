@@ -1,22 +1,22 @@
-import React from "react";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { IconType } from "react-icons";
 
 interface MenuItemProps {
-  href: string;
+  onClick?: () => void;
   icon: IconType;
   label: string;
 }
 
-const MenuItem: React.FC<MenuItemProps> = ({ href, icon: Icon, label }) => {
+const MenuItem: React.FC<MenuItemProps> = ({ onClick, icon: Icon, label }) => {
+  const router = useRouter();
   return (
-    <Link
-      href={href}
+    <button
+      onClick={onClick}
       className="flex flex-row items-center gap-4 hover:text-[#006E7F]"
     >
       <Icon className="text-xl" />
       <span className="font-light">{label}</span>
-    </Link>
+    </button>
   );
 };
 

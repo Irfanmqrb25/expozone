@@ -175,14 +175,20 @@ const Header = () => {
         >
           {isOpen && (
             <>
-              <li className="flex items-center gap-4 p-3 hover:text-[#23A094]">
+              <Link
+                href="/login"
+                className="flex items-center gap-4 p-3 hover:text-[#23A094]"
+              >
                 <AiOutlineUser />
                 <span>Login</span>
-              </li>
-              <li className="flex items-center gap-4 p-3  hover:text-[#23A094]">
+              </Link>
+              <Link
+                href="/home"
+                className="flex items-center gap-4 p-3  hover:text-[#23A094]"
+              >
                 <AiOutlineHome />
                 <span>Home</span>
-              </li>
+              </Link>
               <li className="flex items-center gap-4 p-3  hover:text-[#23A094]">
                 <MdOutlineFeaturedPlayList />
                 <span>Features</span>

@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { Fredoka } from "next/font/google";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import clsx from "clsx";
 import {
@@ -18,11 +18,15 @@ import {
 } from "react-icons/md";
 import { HiShoppingCart, HiOutlineDotsCircleHorizontal } from "react-icons/hi";
 import { FiHelpCircle } from "react-icons/fi";
-import { HiOutlineCodeBracket } from "react-icons/hi2";
 import { RiCustomerService2Line } from "react-icons/ri";
-import { IoFastFoodOutline } from "react-icons/io5";
-import { GiClothes } from "react-icons/gi";
-import { AiOutlineHeart, AiOutlineStar, AiOutlineShop } from "react-icons/ai";
+import { CgProfile } from "react-icons/cg";
+import { BiCategoryAlt, BiStore } from "react-icons/bi";
+import {
+  AiOutlineHeart,
+  AiOutlineStar,
+  AiOutlineShopping,
+  AiOutlineShoppingCart,
+} from "react-icons/ai";
 import { Turn as Hamburger } from "hamburger-react";
 import { signOut } from "next-auth/react";
 
@@ -53,6 +57,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import useCreateStoreModal from "@/app/hooks/useCreateStoreModal";
 
 const fredoka = Fredoka({
   weight: ["300", "400", "500", "600"],
@@ -62,21 +67,35 @@ const fredoka = Fredoka({
 
 interface NavbarProps {
   session?: UserType;
+  store?: any;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ session }) => {
+const Navbar: React.FC<NavbarProps> = ({ session, store }) => {
   const router = useRouter();
+  const createStoreModal = useCreateStoreModal();
   const [isOpen, setOpen] = useState(false);
+
   const handleToggled = () => {
     setOpen(!isOpen);
   };
-  useEffect(() => {
-    console.log(session);
-  });
+
+  const onCreateStoreModal = useCallback(() => {
+    if (!session) {
+      router.push("/login");
+    } else if (!store) {
+      if (innerWidth < 1024) {
+        setOpen(!isOpen);
+      }
+      createStoreModal.onOpen();
+    } else if (store) {
+      router.push("/store");
+    }
+  }, [session, createStoreModal, router, store, isOpen]);
+
   return (
     <div
       className={clsx(
-        "flex flex-col border-b fixed justify-between w-full bg-white top-0 left-0",
+        "flex flex-col border-b fixed justify-between w-full bg-white top-0 left-0 z-20",
         fredoka.className
       )}
     >
@@ -118,22 +137,20 @@ const Navbar: React.FC<NavbarProps> = ({ session }) => {
                       <AvatarImage
                         src={session?.image || "/assets/blank-user.jpg"}
                         alt="image user"
+                        referrerPolicy="no-referrer"
                       />
                     </Avatar>
                     <span className="hidden lg:block">{session?.name}</span>
                   </div>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-52" align="start">
+                <DropdownMenuContent className="w-48 bg-white" align="start">
                   <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                  <DropdownMenuSeparator />
+                  <DropdownMenuSeparator className="bg-neutral-100" />
                   <DropdownMenuGroup>
                     <DropdownMenuItem className="cursor-pointer">
                       <User className="w-4 h-4 mr-2" />
                       <span>Profile</span>
                     </DropdownMenuItem>
-                  </DropdownMenuGroup>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuGroup>
                     <DropdownMenuItem className="cursor-pointer">
                       <Heart className="w-4 h-4 mr-2" />
                       <span>Wishlist</span>
@@ -144,11 +161,14 @@ const Navbar: React.FC<NavbarProps> = ({ session }) => {
                     </DropdownMenuItem>
                     <DropdownMenuItem className="cursor-pointer">
                       <ShoppingBag className="w-4 h-4 mr-2" />
-                      <span>Favorite Shop</span>
+                      <span>Ordered</span>
                     </DropdownMenuItem>
                   </DropdownMenuGroup>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem className="cursor-pointer">
+                  <DropdownMenuSeparator className="bg-neutral-100" />
+                  <DropdownMenuItem
+                    className="cursor-pointer"
+                    onClick={onCreateStoreModal}
+                  >
                     <Store className="w-4 h-4 mr-2" />
                     <span>My Store</span>
                   </DropdownMenuItem>
@@ -160,7 +180,7 @@ const Navbar: React.FC<NavbarProps> = ({ session }) => {
                     <HelpCircle className="w-4 h-4 mr-2" />
                     <span>Help</span>
                   </DropdownMenuItem>
-                  <DropdownMenuSeparator />
+                  <DropdownMenuSeparator className="bg-neutral-100" />
                   <DropdownMenuItem
                     onClick={() => signOut()}
                     className="cursor-pointer"
@@ -188,7 +208,7 @@ const Navbar: React.FC<NavbarProps> = ({ session }) => {
               </>
             )}
 
-            <div className="z-10 block lg:hidden">
+            <div className="block lg:hidden">
               <Hamburger
                 toggled={isOpen}
                 toggle={handleToggled}
@@ -205,7 +225,7 @@ const Navbar: React.FC<NavbarProps> = ({ session }) => {
       {isOpen && (
         <div
           className={clsx(
-            "bg-black text-white fixed w-full text-lg tracking-wider flex flex-col gap-5 overflow-y-scroll z-10",
+            "bg-black text-white fixed w-full text-lg tracking-wider flex flex-col gap-5 overflow-y-scroll",
             isOpen
               ? " h-screen ease-in duration-500"
               : "h-0 ease-out duration-200",
@@ -258,44 +278,39 @@ const Navbar: React.FC<NavbarProps> = ({ session }) => {
             <hr />
           </div>
           <div className="flex flex-col gap-3 px-5">
-            <p>Activity</p>
+            <p>My Account</p>
             <div className="flex flex-col gap-3">
-              <MenuItem href="" icon={AiOutlineHeart} label="Wishlist" />
-              <MenuItem href="" icon={AiOutlineStar} label="Review" />
-              <MenuItem href="" icon={AiOutlineShop} label="Favorite Shop" />
+              <MenuItem icon={CgProfile} label="Profile" />
+              <MenuItem icon={AiOutlineHeart} label="Wishlist" />
+              <MenuItem icon={AiOutlineStar} label="Review" />
+              <MenuItem icon={AiOutlineShopping} label="Ordered" />
+              <MenuItem icon={BiCategoryAlt} label="See Category" />
             </div>
           </div>
           <div className="flex flex-col gap-3 px-5">
-            <p>Category</p>
+            <p>Activity</p>
             <div className="flex flex-col gap-3">
-              <MenuItem href="" icon={MdOutlineOndemandVideo} label="Video" />
-              <MenuItem href="" icon={MdOutlineMusicNote} label="Music" />
-              <MenuItem href="" icon={MdOutlineGames} label="Gaming" />
-              <MenuItem href="" icon={GiClothes} label="Fashion" />
-              <MenuItem href="" icon={HiOutlineCodeBracket} label="Software" />
               <MenuItem
-                href=""
-                icon={HiOutlineDotsCircleHorizontal}
-                label="Others"
+                onClick={onCreateStoreModal}
+                icon={BiStore}
+                label="My Store"
               />
+              <MenuItem icon={AiOutlineShoppingCart} label="My Order" />
             </div>
           </div>
           <div className="flex flex-col gap-3 px-5">
             <p>Help Center</p>
             <div className="flex flex-col gap-3">
               <MenuItem
-                href=""
                 icon={RiCustomerService2Line}
                 label="Customer Service"
               />
-              <MenuItem href="" icon={FiHelpCircle} label="Help" />
-              <div
+              <MenuItem icon={FiHelpCircle} label="Help" />
+              <MenuItem
                 onClick={() => signOut()}
-                className="flex flex-row items-center gap-4 hover:text-[#006E7F]"
-              >
-                <MdLogout className="text-xl" />
-                <span className="font-light">Logout</span>
-              </div>
+                icon={MdLogout}
+                label="Logout"
+              />
             </div>
           </div>
         </div>
