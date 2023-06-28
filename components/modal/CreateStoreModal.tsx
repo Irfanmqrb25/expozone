@@ -86,7 +86,7 @@ const CreateStoreModal = () => {
         setStep(STEPS.PROFILE_STORE);
         createStoreModal.onClose();
         if (pathaname === "/home") {
-          router.push("/store");
+          router.push("/mystore");
         }
         toast.success("Store Created");
       })

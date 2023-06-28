@@ -8,19 +8,22 @@ import {
   MdOutlineMusicNote,
   MdOutlineGames,
   MdFilterListAlt,
+  MdElectricBolt,
 } from "react-icons/md";
 import { HiOutlineCodeBracket } from "react-icons/hi2";
-import { RiMenu5Line } from "react-icons/ri";
-import { IoFastFoodOutline } from "react-icons/io5";
-import { GiClothes } from "react-icons/gi";
+import { CgGames } from "react-icons/cg";
+import { CiBurger } from "react-icons/ci";
+import { IoShirtOutline } from "react-icons/io5";
+import { IoFastFoodOutline, IoPizzaOutline } from "react-icons/io5";
+import { FiBookOpen } from "react-icons/fi";
 import CategoryItem from "./CategoryItem";
 
 export const categories = [
   {
-    label: "All",
+    label: "Electronic",
     description:
       "Find the various videos you want here such as movies, series, lessons and others.",
-    icon: RiMenu5Line,
+    icon: MdElectricBolt,
   },
   {
     label: "Video",
@@ -38,7 +41,7 @@ export const categories = [
     label: "Books",
     description:
       "Find the books you need such as cookbooks and others in digital form",
-    icon: MdOutlineMenuBook,
+    icon: FiBookOpen,
   },
   {
     label: "Music",
@@ -49,18 +52,18 @@ export const categories = [
   {
     label: "Fashion",
     description: "Find your fashion from various famous brands in the world.",
-    icon: GiClothes,
+    icon: IoShirtOutline,
   },
   {
     label: "Foods",
     description: "Find your clothes from various famous brands in the world.",
-    icon: IoFastFoodOutline,
+    icon: IoPizzaOutline,
   },
   {
     label: "Gaming",
     description:
       "Find and sell various activities in games such as game accounts, game digital money and more.",
-    icon: MdOutlineGames,
+    icon: CgGames,
   },
   {
     label: "Software",
@@ -82,7 +85,6 @@ const Categories = () => {
   const pathname = usePathname();
 
   const isHomePage = pathname === "/home";
-  const selectedCategory = category || "All";
 
   if (!isHomePage) {
     return null;
@@ -100,7 +102,7 @@ const Categories = () => {
             key={item.label}
             label={item.label}
             icon={item.icon}
-            selected={selectedCategory === item.label}
+            selected={category === item.label}
           />
         ))}
       </div>

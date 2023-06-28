@@ -13,11 +13,11 @@ const patrickHand = Patrick_Hand({
 
 interface ProductCard {
   storeName: string;
-  storeImage: string;
+  storeImage: string | null;
   productName: string;
   productImage: string;
   price: number;
-  onClick: () => void;
+  onClick?: () => void;
 }
 const ProductCard: React.FC<ProductCard> = ({
   storeImage,

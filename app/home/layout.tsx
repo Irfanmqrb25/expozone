@@ -1,4 +1,3 @@
-import ClientComponent from "@/components/ClientComponent";
 import CreateStoreModal from "@/components/modal/CreateStoreModal";
 import Navbar from "@/components/navbar/Navbar";
 import getCurrentUser from "@/lib/session";
@@ -20,10 +19,8 @@ export default async function Layout({
   const session = await getCurrentUser();
   return (
     <div className={fredoka.className}>
-      <ClientComponent>
-        <CreateStoreModal />
-        <Navbar session={session} store={store} />
-      </ClientComponent>
+      <CreateStoreModal />
+      <Navbar session={session} store={store} />
       <div>{children}</div>
     </div>
   );

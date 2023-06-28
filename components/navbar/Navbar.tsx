@@ -88,7 +88,7 @@ const Navbar: React.FC<NavbarProps> = ({ session, store }) => {
       }
       createStoreModal.onOpen();
     } else if (store) {
-      router.push("/store");
+      router.push("/mystore");
     }
   }, [session, createStoreModal, router, store, isOpen]);
 

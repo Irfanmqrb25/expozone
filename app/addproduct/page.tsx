@@ -63,7 +63,7 @@ const AddProductPage = () => {
     axios
       .post("/api/product", data)
       .then(() => {
-        router.push("/store");
+        router.push("/mystore");
         toast.success("Product Added");
         reset();
         router.refresh();
