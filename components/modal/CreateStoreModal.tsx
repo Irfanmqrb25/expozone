@@ -2,7 +2,7 @@
 import { useMemo, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 
-import useCreateStoreModal from "@/app/hooks/useCreateStoreModal";
+import useCreateStoreModal from "@/hooks/useCreateStoreModal";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import axios from "axios";
 import { toast } from "react-hot-toast";

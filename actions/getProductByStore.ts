@@ -15,6 +15,14 @@ export default async function getProductByStore() {
       where: {
         storeId: store?.id,
       },
+      include: {
+        store: {
+          select: {
+            name: true,
+            image: true,
+          },
+        },
+      },
     });
 
     return products;

@@ -4,9 +4,7 @@ import {
   MdOutlineOndemandVideo,
   MdOutlineDesignServices,
   MdOutlinePhotoCameraBack,
-  MdOutlineMenuBook,
   MdOutlineMusicNote,
-  MdOutlineGames,
   MdFilterListAlt,
   MdElectricBolt,
 } from "react-icons/md";
@@ -14,7 +12,7 @@ import { HiOutlineCodeBracket } from "react-icons/hi2";
 import { CgGames } from "react-icons/cg";
 import { CiBurger } from "react-icons/ci";
 import { IoShirtOutline } from "react-icons/io5";
-import { IoFastFoodOutline, IoPizzaOutline } from "react-icons/io5";
+import { IoPizzaOutline } from "react-icons/io5";
 import { FiBookOpen } from "react-icons/fi";
 import CategoryItem from "./CategoryItem";
 

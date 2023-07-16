@@ -1,6 +1,6 @@
 "use client";
 
-import useCreateStoreModal from "@/app/hooks/useCreateStoreModal";
+import useCreateStoreModal from "@/hooks/useCreateStoreModal";
 import { Button } from "./ui/button";
 import { useCallback } from "react";
 

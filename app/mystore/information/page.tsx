@@ -1,7 +1,7 @@
 import { Info } from "lucide-react";
 import { BiLink } from "react-icons/bi";
 
-import getStore from "@/app/actions/getStore";
+import getStore from "@/actions/getStore";
 
 import Container from "@/components/Container";
 import { Button } from "@/components/ui/button";

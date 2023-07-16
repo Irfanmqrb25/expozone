@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 
-import getStore from "../actions/getStore";
-import getProductByStore from "../actions/getProductByStore";
+import getStore from "@/actions/getStore";
+import getProductByStore from "@/actions/getProductByStore";
 import getCurrentUser from "@/lib/session";
 
 import Container from "@/components/Container";
@@ -27,16 +27,9 @@ const StorePage = async () => {
 
   return (
     <Container>
-      <div className="grid w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <div className="grid w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
         {products?.map((product: any) => (
-          <ProductCard
-            key={product.id}
-            productName={product.name}
-            productImage={product.image}
-            price={product.price}
-            storeImage={store.image}
-            storeName={store.name}
-          />
+          <ProductCard key={product.id} productData={product} mystore />
         ))}
       </div>
     </Container>

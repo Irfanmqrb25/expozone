@@ -1,77 +1,117 @@
+"use client";
 import Image from "next/image";
-import { Patrick_Hand } from "next/font/google";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "../ui/button";
-import { CiBadgeDollar } from "react-icons/ci";
-import clsx from "clsx";
+import { AspectRatio } from "../ui/aspect-ratio";
+import { DollarSign } from "lucide-react";
 
-const patrickHand = Patrick_Hand({
-  weight: ["400"],
-  subsets: ["latin"],
-  variable: "--patrick-hand",
-});
+import { ProductData } from "@/types";
 
 interface ProductCard {
-  storeName: string;
-  storeImage: string | null;
-  productName: string;
-  productImage: string;
-  price: number;
+  productData: ProductData;
+  mystore?: boolean;
   onClick?: () => void;
 }
-const ProductCard: React.FC<ProductCard> = ({
-  storeImage,
-  storeName,
-  productName,
-  productImage,
-  price,
+
+const ProductCart: React.FC<ProductCard> = ({
+  productData,
   onClick,
+  mystore,
 }) => {
+  const [windowWidth, setWindowWidth] = useState(0);
+
+  useEffect(() => {
+    setWindowWidth(window.innerWidth);
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   const productNameSubstr =
-    productName?.length > 30
-      ? `${productName.substring(0, 30)}...`
-      : productName;
+    productData.name.length > (windowWidth < 1280 ? 30 : 25)
+      ? `${productData.name.substring(0, windowWidth < 1280 ? 30 : 25)}...`
+      : productData.name;
+
+  const storeUrl =
+    productData.store.name.split(" ").length > 1
+      ? productData.store.name.toLowerCase().replace(/\s+/g, "-")
+      : productData.store.name.toLowerCase();
 
   return (
-    <div className="col-span-1 border border-gray-300 rounded-md cursor-pointer">
-      <div className="flex flex-col w-full">
-        <div className="relative w-full overflow-hidden rounded-t-md aspect-square">
-          <Image
-            alt="product"
-            src={productImage}
-            fill
-            className="object-cover w-full h-full transition hover:scale-110"
-          />
-        </div>
-        <div className="flex flex-col gap-3 p-3 border border-y-gray-300">
-          <p className="text-lg font-normal">{productNameSubstr}</p>
-          <div className="flex items-center gap-2">
-            <Avatar className="border border-gray-300 w-7 h-7">
+    <Card className="h-full overflow-hidden rounded-sm">
+      <Link href={`/${storeUrl}/${productData.id}`}>
+        <CardHeader className="p-0 border-b">
+          <AspectRatio ratio={4 / 3}>
+            <Image
+              src={productData.image}
+              alt={productData.name}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              loading="lazy"
+              fill
+              className="object-cover"
+            />
+          </AspectRatio>
+        </CardHeader>
+      </Link>
+      <Link href={`/${storeUrl}/${productData.id}`}>
+        <CardContent className="grid gap-2.5 p-4 border-b">
+          <CardTitle className="text-lg font-medium">
+            {productNameSubstr}
+          </CardTitle>
+          <CardDescription className="flex items-center text-lg">
+            <DollarSign size={18} />
+            {productData.price}
+          </CardDescription>
+          <div className="flex gap-2">
+            <Avatar className="border w-7 h-7">
               <AvatarImage
-                src={storeImage || "/assets/blank-user.jpg"}
+                src={productData.store.image || "/assets/blank-user.jpg"}
                 alt="avatar"
               />
             </Avatar>
-            <span>{storeName}</span>
+            <span>{productData.store.name}</span>
           </div>
+        </CardContent>
+      </Link>
+      <CardFooter className="p-4">
+        <div className="flex flex-col items-center w-full gap-2 sm:flex-row sm:justify-between">
+          {mystore ? (
+            <Button variant="outline" className="w-full">
+              Edit
+            </Button>
+          ) : (
+            <Button variant="outline" className="w-full">
+              Buy Now
+            </Button>
+          )}
+          {mystore ? (
+            <Button variant="secondary" className="w-full">
+              Delete
+            </Button>
+          ) : (
+            <Button variant="secondary" className="w-full">
+              Add to cart
+            </Button>
+          )}
         </div>
-        <div className="flex items-center justify-between px-3 py-2">
-          <div className="flex items-center gap-1">
-            <CiBadgeDollar className="text-2xl" />
-            <span className={clsx("text-lg", patrickHand.className)}>
-              {price}
-            </span>
-          </div>
-          <Button
-            className={clsx("tracking-wider rounded-sm", patrickHand.className)}
-            onClick={onClick}
-          >
-            Buy Product
-          </Button>
-        </div>
-      </div>
-    </div>
+      </CardFooter>
+    </Card>
   );
 };
 
-export default ProductCard;
+export default ProductCart;

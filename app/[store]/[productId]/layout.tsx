@@ -1,5 +1,4 @@
-import ClientComponent from "@/components/ClientComponent";
-import Navbar from "@/components/navbar/Navbar";
+import MainNav from "@/components/navbar/MainNav";
 import getCurrentUser from "@/lib/session";
 import { Fredoka } from "next/font/google";
 
@@ -17,9 +16,7 @@ export default async function Layout({
   const session = await getCurrentUser();
   return (
     <div className={fredoka.className}>
-      <ClientComponent>
-        <Navbar session={session} />
-      </ClientComponent>
+      <MainNav session={session} />
       <div>{children}</div>
     </div>
   );

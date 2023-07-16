@@ -1,7 +1,10 @@
-import Container from "@/components/Container";
-import ProductCard from "@/components/product/ProductCard";
 import React from "react";
-import getProducts, { IProductParams } from "../actions/getProducts";
+
+import Container from "@/components/Container";
+import RemoveFilter from "@/components/RemoveFilter";
+import ProductCard from "@/components/product/ProductCard";
+
+import getProducts, { IProductParams } from "@/actions/getProducts";
 
 interface HomePageProps {
   searchParams: IProductParams;
@@ -13,23 +16,16 @@ const HomePage = async ({ searchParams }: HomePageProps) => {
   if (products?.length === 0) {
     return (
       <Container>
-        <p>No products found</p>
+        <RemoveFilter title="Product Not Found" reset />
       </Container>
     );
   }
 
   return (
     <Container>
-      <div className="grid grid-cols-1 gap-8 pt-20 lg:pt-36 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
+      <div className="grid grid-cols-1 gap-5 pt-20 mx-1 md:gap-3 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
         {products?.map((product) => (
-          <ProductCard
-            key={product.id}
-            storeName={product.store.name}
-            storeImage={product.store.image}
-            productName={product.name}
-            productImage={product.image}
-            price={product.price}
-          />
+          <ProductCard key={product.id} productData={product} />
         ))}
       </div>
     </Container>

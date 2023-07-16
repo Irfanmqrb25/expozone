@@ -1,4 +1,4 @@
-import getProductByStore from "@/app/actions/getProductByStore";
+import getProductByStore from "@/actions/getProductByStore";
 import Container from "@/components/Container";
 
 const CategoryStorePage = async () => {
