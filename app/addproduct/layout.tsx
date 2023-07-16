@@ -1,4 +1,3 @@
-import Navbar from "@/components/navbar/Navbar";
 import getCurrentUser from "@/lib/session";
 import { Fredoka } from "next/font/google";
 
@@ -16,7 +15,6 @@ export default async function Layout({
   const session = await getCurrentUser();
   return (
     <div className={fredoka.className}>
-      <Navbar session={session} />
       <div>{children}</div>
     </div>
   );
