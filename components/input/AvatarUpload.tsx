@@ -1,5 +1,6 @@
 "use client";
 
+import clsx from "clsx";
 import { CldUploadWidget } from "next-cloudinary";
 import Image from "next/image";
 import { useCallback } from "react";
@@ -12,9 +13,14 @@ declare global {
 interface AvatarUploadProps {
   onChange: (value: any) => void;
   value: string;
+  className?: string;
 }
 
-const AvatarUpload: React.FC<AvatarUploadProps> = ({ onChange, value }) => {
+const AvatarUpload: React.FC<AvatarUploadProps> = ({
+  onChange,
+  value,
+  className,
+}) => {
   const handleUpload = useCallback(
     (result: any) => {
       onChange(result.info.secure_url);
@@ -35,16 +41,19 @@ const AvatarUpload: React.FC<AvatarUploadProps> = ({ onChange, value }) => {
           return (
             <div
               onClick={() => open?.()}
-              className="relative w-[150px] h-[150px] flex flex-col items-center justify-center gap-2 p-5 transition border-2 border-dashed rounded-[50%] cursor-pointer hover:opacity-70 border-neutral-300 text-neutral-600"
+              className={clsx(
+                "relative w-[150px] h-[150px] flex flex-col items-center justify-center gap-2 p-10 transition border-2 border-dashed rounded-[50%] cursor-pointer hover:opacity-70 border-neutral-300 text-neutral-600",
+                className
+              )}
             >
               <AiOutlineCamera size={30} />
               {value && (
-                <div className="absolute inset-0">
+                <div className="absolute inset-3">
                   <Image
                     alt="upload"
                     fill
                     style={{ objectFit: "cover" }}
-                    className="rounded-[50%]"
+                    className="rounded-[50%] object-center"
                     src={value}
                   />
                 </div>

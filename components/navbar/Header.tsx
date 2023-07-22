@@ -114,8 +114,8 @@ const Header = () => {
                 isScrolled ? "space-x-16" : "space-x-24"
               )}
             >
-              <Link href="/home">HOME</Link>
-              <p>FEATURES</p>
+              <Link href="/">HOME</Link>
+              <Link href="/featured">FEATURED</Link>
               <p>NEW ARRIVALS</p>
               <p>PRODUCTS</p>
               <p>BLOG</p>

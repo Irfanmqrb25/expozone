@@ -1,8 +1,10 @@
 import getCurrentUser from "@/lib/session";
 import prisma from "@/lib/prisma";
 import getStore from "./getStore";
+import { ProductsColumn } from "@/components/table/ProductTable";
+import { format } from "date-fns";
 
-export default async function getProductByStore() {
+export default async function getProductByStore(): Promise<ProductsColumn[]> {
   try {
     const session = await getCurrentUser();
     const store = await getStore();
@@ -11,22 +13,35 @@ export default async function getProductByStore() {
       throw new Error("User session not found");
     }
 
+    if (!store) {
+      throw new Error("Store not found or you not have a store");
+    }
+
     const products = await prisma.product.findMany({
       where: {
         storeId: store?.id,
       },
       include: {
-        store: {
-          select: {
-            name: true,
-            image: true,
-          },
-        },
+        store: true,
+      },
+      orderBy: {
+        createdAt: "desc",
       },
     });
 
-    return products;
+    const formatedProducts: ProductsColumn[] = products.map((product) => ({
+      id: product.id,
+      name: product.name,
+      category: product.category,
+      stock: product.stock,
+      price: product.price,
+      isFeatured: product.isFeatured,
+      createdAt: format(product.createdAt, "dd-MM-yyyy"),
+    }));
+
+    return formatedProducts;
   } catch (error) {
     console.log(error);
+    return [];
   }
 }

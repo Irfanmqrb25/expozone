@@ -108,7 +108,7 @@ const RegisterClient = () => {
       <hr />
       <div className="flex flex-col gap-3">
         <Button
-          onClick={() => signIn("google", { callbackUrl: "/home" })}
+          onClick={() => signIn("google", { callbackUrl: "/featured" })}
           className="flex justify-between text-black bg-white border hover:bg-white hover:border-neutral-500 border-neutral-300"
         >
           <FcGoogle className="text-xl" />

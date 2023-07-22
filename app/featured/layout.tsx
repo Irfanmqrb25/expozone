@@ -3,6 +3,7 @@ import getCurrentUser from "@/lib/session";
 import { Fredoka } from "next/font/google";
 import getStore from "@/actions/getStore";
 import MainNav from "@/components/navbar/MainNav";
+import { Toaster } from "@/components/ui/toaster";
 
 const fredoka = Fredoka({
   weight: ["300", "400", "500", "600"],
@@ -22,6 +23,7 @@ export default async function Layout({
       <CreateStoreModal />
       <MainNav session={session} store={store} />
       <div>{children}</div>
+      <Toaster />
     </div>
   );
 }

@@ -17,6 +17,8 @@ const Header = ({ store }: any) => {
   const router = useRouter();
   const pathname = usePathname();
 
+  if (!store) return null;
+
   return (
     <Container>
       <div className="flex flex-col gap-10 pt-20">
@@ -62,7 +64,7 @@ const Header = ({ store }: any) => {
               )}
             >
               <Package2 />
-              <span>Product</span>
+              <span className="hidden">Product</span>
             </button>
             <button
               onClick={() => router.push("/mystore/category")}
@@ -72,7 +74,7 @@ const Header = ({ store }: any) => {
               )}
             >
               <Columns />
-              <span>Category</span>
+              <span className="hidden">Category</span>
             </button>
             <button
               onClick={() => router.push("/mystore/information")}
@@ -82,7 +84,7 @@ const Header = ({ store }: any) => {
               )}
             >
               <Info />
-              <span>Information</span>
+              <span className="hidden">Information</span>
             </button>
           </div>
           <div className="flex">

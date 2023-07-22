@@ -28,7 +28,7 @@ const MainNav = ({
               <MobileSheet />
             </div>
             <div
-              onClick={() => router.push("/home")}
+              onClick={() => router.push("/featured")}
               className="items-center hidden gap-2 cursor-pointer lg:flex"
             >
               <Image
@@ -42,10 +42,10 @@ const MainNav = ({
               </span>
             </div>
             <div className="items-center hidden mt-[6px] ml-10 gap-14 lg:flex">
-              <Link href="/Home">Home</Link>
-              <Link href="">Discover</Link>
-              <Link href="">Products</Link>
-              <Link href="">Store</Link>
+              <Link href="/featured">Featured</Link>
+              <Link href="/">Discover</Link>
+              <Link href="/">Products</Link>
+              <Link href="/store">Store</Link>
             </div>
           </div>
           <div className="flex items-center gap-3">

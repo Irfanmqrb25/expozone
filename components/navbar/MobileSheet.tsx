@@ -40,8 +40,8 @@ const MobileSheet = () => {
           </SheetTitle>
         </SheetHeader>
         <ScrollArea className="mt-10">
-          <Link href="/home" className="flex justify-between">
-            <p className="font-medium font">Home</p>
+          <Link href="/featured" className="flex justify-between">
+            <p className="font-medium font">Featured</p>
             <HomeIcon size={18} />
           </Link>
           <hr className="mt-2 mb-4" />
@@ -55,7 +55,7 @@ const MobileSheet = () => {
             <ShoppingBag size={18} />
           </div>
           <hr className="mt-2 mb-4" />
-          <Link href="/mystore" className="flex justify-between">
+          <Link href="/store" className="flex justify-between">
             <p className="font-medium font">Store</p>
             <Store size={18} />
           </Link>

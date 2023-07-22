@@ -12,10 +12,12 @@ const EmptyStore = () => {
   }, [createStoreModal]);
 
   return (
-    <div className="flex flex-col items-center justify-center gap-2">
+    <div className="flex flex-col gap-2">
       <h1 className="text-2xl font-medium">You dont have a store yet</h1>
       <p className="text-neutral-500">Create a new store now!</p>
-      <Button onClick={onCreateStoreModal}>Create Store</Button>
+      <Button size="sm" className="mx-auto ml-0" onClick={onCreateStoreModal}>
+        Create Store
+      </Button>
     </div>
   );
 };

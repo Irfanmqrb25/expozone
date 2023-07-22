@@ -39,7 +39,7 @@ const AvatarProfile = ({
       }
       createStoreModal.onOpen();
     } else if (store) {
-      router.push("/mystore");
+      router.push("/store");
     }
   }, [session, createStoreModal, router, store, isOpen]);
 
@@ -52,7 +52,6 @@ const AvatarProfile = ({
               <AvatarImage
                 src={session?.image || "/assets/blank-user.jpg"}
                 alt="image user"
-                referrerPolicy="no-referrer"
               />
             </Avatar>
           </DropdownMenuTrigger>
@@ -99,7 +98,7 @@ const AvatarProfile = ({
         <Button
           onClick={() => router.push("/login")}
           variant="outline"
-          className="hover:bg-[#006E7F] hover:text-white py-[6px] hidden lg:block"
+          className="hover:bg-[#006E7F] hover:text-white py-[6px] border-black border-2 hidden lg:block"
         >
           Sign in
         </Button>

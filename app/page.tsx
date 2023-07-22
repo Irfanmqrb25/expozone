@@ -48,7 +48,7 @@ const LandingPage = () => {
             number one.
           </p>
           <Link
-            href="/home"
+            href="/featured"
             className={clsx(
               "bg-black text-white py-2 px-5 rounded-sm w-1/2 lg:w-auto tracking-wider text-lg border-2 border-white ease-in-out duration-300 shadow-button",
               patrickHand.className

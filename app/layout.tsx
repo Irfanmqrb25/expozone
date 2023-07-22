@@ -1,6 +1,7 @@
 import "./globals.css";
 import ClientComponent from "@/components/ClientComponent";
 import ToasterProvider from "@/provider/ToasterProvider";
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata = {
   title: "Expozone",
@@ -20,6 +21,7 @@ export default function RootLayout({
           <ToasterProvider />
         </ClientComponent>
         <div>{children}</div>
+        <Toaster />
       </body>
     </html>
   );

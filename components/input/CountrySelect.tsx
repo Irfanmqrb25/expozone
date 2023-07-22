@@ -9,11 +9,15 @@ interface CountrySelectValue {
 }
 
 interface CountrySelectProps {
-  value: CountrySelectValue;
+  value?: CountrySelectValue | string;
   onChange: (value: CountrySelectValue) => void;
 }
 
-const CountrySelect: React.FC<CountrySelectProps> = ({ value, onChange }) => {
+const CountrySelect: React.FC<CountrySelectProps> = ({
+  value,
+  onChange,
+  ...props
+}) => {
   const options = Country.getAllCountries().map((country) => ({
     value: country.isoCode,
     label: country.name,
@@ -23,6 +27,7 @@ const CountrySelect: React.FC<CountrySelectProps> = ({ value, onChange }) => {
   return (
     <div className="w-full">
       <Select
+        {...props}
         required={true}
         placeholder="Select Country"
         isClearable

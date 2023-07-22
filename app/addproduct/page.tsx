@@ -58,22 +58,20 @@ const AddProductPage = () => {
     });
   };
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     setIsLoading(true);
-    axios
-      .post("/api/product", data)
-      .then(() => {
-        router.push("/mystore");
-        toast.success("Product Added");
-        reset();
-        router.refresh();
-      })
-      .catch(() => {
-        toast.error("Something went wrong");
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+
+    try {
+      await axios.post("/api/product", data);
+      router.push("/mystore");
+      router.refresh();
+      reset();
+      toast.success("Product Added");
+    } catch (error) {
+      toast.error("Something went wrong");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (

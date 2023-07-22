@@ -1,3 +1,4 @@
+import Container from "@/components/Container";
 import MainNav from "@/components/navbar/MainNav";
 import getCurrentUser from "@/lib/session";
 import { Fredoka } from "next/font/google";
@@ -17,7 +18,9 @@ export default async function Layout({
   return (
     <div className={fredoka.className}>
       <MainNav session={session} />
-      <div>{children}</div>
+      <Container>
+        <div className="pt-20">{children}</div>
+      </Container>
     </div>
   );
 }

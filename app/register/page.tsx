@@ -16,13 +16,13 @@ const RegisterPage = async () => {
   const session = await getCurrentUser();
 
   if (session) {
-    redirect("/home");
+    redirect("/featured");
   }
 
   return (
     <div className="flex flex-col w-full gap-10 px-6 py-7 md:px-40 md:py-10">
       <Link
-        href="/home"
+        href="/featured"
         className="flex items-center justify-center gap-2 xl:justify-start"
       >
         <Image

@@ -25,6 +25,14 @@ const StorePage = async () => {
     );
   }
 
+  if (products!.length < 1) {
+    return (
+      <div className="flex justify-center h-full mt-20 text-lg font-medium text-center">
+        There are no products yet
+      </div>
+    );
+  }
+
   return (
     <Container>
       <div className="grid w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">

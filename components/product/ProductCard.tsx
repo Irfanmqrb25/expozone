@@ -14,7 +14,7 @@ import {
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "../ui/button";
 import { AspectRatio } from "../ui/aspect-ratio";
-import { DollarSign } from "lucide-react";
+import { DollarSign, DollarSignIcon } from "lucide-react";
 
 import { ProductData } from "@/types";
 
@@ -42,11 +42,6 @@ const ProductCart: React.FC<ProductCard> = ({
     };
   }, []);
 
-  const productNameSubstr =
-    productData.name.length > (windowWidth < 1280 ? 30 : 25)
-      ? `${productData.name.substring(0, windowWidth < 1280 ? 30 : 25)}...`
-      : productData.name;
-
   const storeUrl =
     productData.store.name.split(" ").length > 1
       ? productData.store.name.toLowerCase().replace(/\s+/g, "-")
@@ -70,11 +65,11 @@ const ProductCart: React.FC<ProductCard> = ({
       </Link>
       <Link href={`/${storeUrl}/${productData.id}`}>
         <CardContent className="grid gap-2.5 p-4 border-b">
-          <CardTitle className="text-lg font-medium">
-            {productNameSubstr}
+          <CardTitle className="text-lg font-medium line-clamp-1">
+            {productData.name}
           </CardTitle>
           <CardDescription className="flex items-center text-lg">
-            <DollarSign size={18} />
+            <DollarSignIcon size={16} className="mt-[3px]" />
             {productData.price}
           </CardDescription>
           <div className="flex gap-2">
@@ -90,24 +85,10 @@ const ProductCart: React.FC<ProductCard> = ({
       </Link>
       <CardFooter className="p-4">
         <div className="flex flex-col items-center w-full gap-2 sm:flex-row sm:justify-between">
-          {mystore ? (
-            <Button variant="outline" className="w-full">
-              Edit
-            </Button>
-          ) : (
-            <Button variant="outline" className="w-full">
-              Buy Now
-            </Button>
-          )}
-          {mystore ? (
-            <Button variant="secondary" className="w-full">
-              Delete
-            </Button>
-          ) : (
-            <Button variant="secondary" className="w-full">
-              Add to cart
-            </Button>
-          )}
+          <Button variant="outline" className="w-full">
+            Buy now
+          </Button>
+          <Button className="w-full">Add to cart</Button>
         </div>
       </CardFooter>
     </Card>

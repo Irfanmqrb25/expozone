@@ -13,7 +13,7 @@ export async function POST(request: Request) {
   }
 
   const body = await request.json();
-  const { name, image, category, description, price } = body;
+  const { name, image, stock, category, description, price, isFeatured } = body;
 
   const product = await prisma.product.create({
     data: {
@@ -21,9 +21,35 @@ export async function POST(request: Request) {
       image,
       category,
       description,
+      isFeatured,
+      stock: parseInt(stock),
       price: parseInt(price),
       storeId: store?.id!,
     },
   });
   return NextResponse.json(product);
+}
+
+export async function DELETE(
+  request: Request,
+  { params }: { params: { productId: string } }
+) {
+  const session = await getCurrentUser();
+  const store = await getStore();
+
+  if (!session && !store) {
+    return NextResponse.json("unauthorized");
+  }
+
+  try {
+    const product = await prisma.product.deleteMany({
+      where: {
+        id: params.productId,
+      },
+    });
+    return NextResponse.json(product);
+  } catch (error) {
+    console.log("[DELETE_PRODUCT_ERROR]", error);
+    throw new Error("Failed to delete product.");
+  }
 }
