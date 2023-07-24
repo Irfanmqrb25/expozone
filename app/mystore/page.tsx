@@ -37,7 +37,12 @@ const StorePage = async () => {
     <Container>
       <div className="grid w-full grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
         {products?.map((product: any) => (
-          <ProductCard key={product.id} productData={product} mystore />
+          <ProductCard
+            session={session}
+            key={product.id}
+            productData={product}
+            mystore
+          />
         ))}
       </div>
     </Container>
