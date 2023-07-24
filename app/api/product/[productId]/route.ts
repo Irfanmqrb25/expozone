@@ -34,9 +34,9 @@ export async function PATCH(
   req: Request,
   { params }: { params: { productId: string } }
 ) {
-  try {
-    const user = await getCurrentUser();
+  const user = await getCurrentUser();
 
+  try {
     const body = await req.json();
 
     const { name, price, category, image, stock, isFeatured, description } =

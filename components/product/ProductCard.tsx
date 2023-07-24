@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 
 import {
   Card,
@@ -14,38 +13,59 @@ import {
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "../ui/button";
 import { AspectRatio } from "../ui/aspect-ratio";
-import { DollarSign, DollarSignIcon } from "lucide-react";
+import { DollarSignIcon } from "lucide-react";
 
-import { ProductData } from "@/types";
+import { ProductData, User } from "@/types";
+import { useState } from "react";
+import axios from "axios";
+import { useToast } from "../ui/use-toast";
+import { useRouter } from "next/navigation";
 
 interface ProductCard {
   productData: ProductData;
+  session: User;
   mystore?: boolean;
   onClick?: () => void;
 }
 
-const ProductCart: React.FC<ProductCard> = ({
-  productData,
-  onClick,
-  mystore,
-}) => {
-  const [windowWidth, setWindowWidth] = useState(0);
-
-  useEffect(() => {
-    setWindowWidth(window.innerWidth);
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+const ProductCart: React.FC<ProductCard> = ({ productData, session }) => {
+  const [loading, setLoading] = useState(false);
+  const { toast } = useToast();
+  const router = useRouter();
 
   const storeUrl =
     productData.store.name.split(" ").length > 1
       ? productData.store.name.toLowerCase().replace(/\s+/g, "-")
       : productData.store.name.toLowerCase();
+
+  const handleAddToCart = async () => {
+    setLoading(true);
+    try {
+      const response = await axios.post("/api/cart", {
+        productId: productData.id,
+        userId: session?.id,
+        quantity: 1,
+      });
+
+      router.refresh();
+
+      if (response.status == 200) {
+        toast({
+          title: "Success✅",
+          description: "Product added to cart!",
+        });
+      } else {
+        toast({
+          title: "Failed❌",
+          description: "Something went wrong.",
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <Card className="h-full overflow-hidden rounded-sm">
@@ -85,10 +105,16 @@ const ProductCart: React.FC<ProductCard> = ({
       </Link>
       <CardFooter className="p-4">
         <div className="flex flex-col items-center w-full gap-2 sm:flex-row sm:justify-between">
-          <Button variant="outline" className="w-full">
+          <Button variant="outline" className="w-full" disabled={loading}>
             Buy now
           </Button>
-          <Button className="w-full">Add to cart</Button>
+          <Button
+            className="w-full"
+            onClick={session ? handleAddToCart : () => router.push("/login")}
+            disabled={loading}
+          >
+            Add to cart
+          </Button>
         </div>
       </CardFooter>
     </Card>

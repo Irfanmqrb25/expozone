@@ -13,7 +13,14 @@ import {
 import { RxHamburgerMenu } from "react-icons/rx";
 import clsx from "clsx";
 import { ScrollArea } from "../ui/scroll-area";
-import { HomeIcon, Search, ShoppingBag, Store } from "lucide-react";
+import {
+  ChevronRightSquare,
+  HomeIcon,
+  Menu,
+  Search,
+  ShoppingBag,
+  Store,
+} from "lucide-react";
 
 const fredoka = Fredoka({
   weight: ["300", "400", "500", "600"],
@@ -25,7 +32,7 @@ const MobileSheet = () => {
   return (
     <Sheet>
       <SheetTrigger>
-        <RxHamburgerMenu className="text-2xl" />
+        <Menu size={30} />
       </SheetTrigger>
       <SheetContent side="left" className={clsx(fredoka.className)}>
         <SheetHeader>

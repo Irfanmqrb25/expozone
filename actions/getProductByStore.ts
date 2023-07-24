@@ -10,7 +10,7 @@ export default async function getProductByStore(): Promise<ProductsColumn[]> {
     const store = await getStore();
 
     if (!session) {
-      throw new Error("User session not found");
+      return [];
     }
 
     if (!store) {

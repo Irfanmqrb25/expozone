@@ -1,5 +1,6 @@
 export type User =
   | {
+      id: string;
       name?: string | null | undefined;
       email?: string | null | undefined;
       image?: string | null | undefined;
@@ -21,8 +22,28 @@ export type ProductData = {
   name: string;
   image: string;
   price: number;
+  category: string;
   store: {
     name: string;
     image: string | null;
   };
 };
+
+export interface CartItem {
+  id: string;
+  quantity: number;
+  total: number;
+  productId: string;
+  cartId: string;
+  product: {
+    id: string;
+    name: string;
+    image: string;
+    price: number;
+    category: string;
+  };
+}
+export interface Cart {
+  userId: string;
+  items: CartItem[];
+}

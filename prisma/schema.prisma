@@ -20,6 +20,7 @@ model User {
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt
   favoriteIds    String[]  @db.ObjectId
+  carts          Cart[]    @relation("UserCarts")
 
   accounts Account[]
   store    Store[]
@@ -76,5 +77,31 @@ model Product {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
+  cartItem    CartItem[]
+
   store Store @relation(fields: [storeId], references: [id], onDelete: Cascade)
+}
+
+model Cart {
+  id             String     @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+
+  user           User?      @relation("UserCarts", fields: [userId], references: [id])
+  userId         String?    @map("user_id") @db.ObjectId
+
+  items          CartItem[]
+}
+
+model CartItem {
+  id             String     @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt      DateTime   @default(now())
+  quantity       Int
+  total          Float
+
+  product        Product    @relation(fields: [productId], references: [id])
+  cart           Cart       @relation(fields: [cartId], references: [id])
+
+  productId      String     @map("product_id") @db.ObjectId
+  cartId         String     @map("cart_id") @db.ObjectId
 }

@@ -6,7 +6,7 @@ export default async function getStore() {
     const session = await getCurrentUser();
 
     if (!session) {
-      throw new Error("User session not found");
+      return null;
     }
 
     const stores = await prisma.store.findMany({

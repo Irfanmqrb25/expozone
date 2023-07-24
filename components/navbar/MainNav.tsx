@@ -7,17 +7,17 @@ import MobileSheet from "./MobileSheet";
 import Filter from "../input/Filter";
 import AvatarProfile from "./AvatarProfile";
 
-import { User as UserType, Store as StoreType, ProductData } from "@/types";
+import { User as UserType, Store as StoreType, Cart } from "@/types";
 import Link from "next/link";
+import CartSheet from "./CartSheet";
 
-const MainNav = ({
-  session,
-  store,
-}: {
-  session?: UserType;
-  store?: StoreType;
-  product?: ProductData;
-}) => {
+interface MainNavProps {
+  session: UserType;
+  store: StoreType;
+  cart: any;
+}
+
+const MainNav: React.FC<MainNavProps> = ({ session, store, cart }) => {
   const router = useRouter();
   return (
     <nav className="fixed z-10 w-full py-1 bg-[#F4F7FA] shadow-sm border-y-2">
@@ -44,13 +44,23 @@ const MainNav = ({
             <div className="items-center hidden mt-[6px] ml-10 gap-14 lg:flex">
               <Link href="/featured">Featured</Link>
               <Link href="/">Discover</Link>
-              <Link href="/">Products</Link>
+              <Link href="/products">Products</Link>
               <Link href="/store">Store</Link>
             </div>
           </div>
-          <div className="flex items-center gap-3">
-            <AvatarProfile session={session} store={store} />
-          </div>
+          {session ? (
+            <div className="flex items-center gap-3">
+              <CartSheet cart={cart} cartUserId={session.id} />
+              <AvatarProfile session={session} store={store} />
+            </div>
+          ) : (
+            <Link
+              href="/login"
+              className="px-2 py-1 border border-black rounded-sm hover:bg-[#23A094] hover:text-white"
+            >
+              Sign in
+            </Link>
+          )}
         </div>
       </Container>
     </nav>
