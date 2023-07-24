@@ -12,9 +12,9 @@ import Link from "next/link";
 import CartSheet from "./CartSheet";
 
 interface MainNavProps {
-  session: UserType;
-  store: StoreType;
-  cart: any;
+  session?: UserType;
+  store?: StoreType;
+  cart?: any;
 }
 
 const MainNav: React.FC<MainNavProps> = ({ session, store, cart }) => {

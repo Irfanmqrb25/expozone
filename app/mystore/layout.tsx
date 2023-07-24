@@ -21,7 +21,7 @@ export default async function Layout({
   return (
     <div className={fredoka.className}>
       <CreateStoreModal />
-      <MainNav session={session} />
+      <MainNav session={session} store={store} />
       <Header store={store} />
       <div>{children}</div>
     </div>
