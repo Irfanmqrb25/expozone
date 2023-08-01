@@ -101,7 +101,6 @@ const FormUpdateProduct: React.FC<FormUpdateProductProps> = ({ data }) => {
         <ImageUpload
           value={image}
           onChange={(value) => setCustomValue("image", value)}
-          onRemove={() => {}}
         />
       </fieldset>
       <fieldset className="grid gap-2.5">
