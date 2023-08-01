@@ -41,7 +41,6 @@ const StorePage = async () => {
             session={session}
             key={product.id}
             productData={product}
-            mystore
           />
         ))}
       </div>
