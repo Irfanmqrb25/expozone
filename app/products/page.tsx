@@ -2,7 +2,7 @@ import React from "react";
 
 import Container from "@/components/Container";
 import RemoveFilter from "@/components/RemoveFilter";
-import ProductCard from "@/components/product/ProductCard";
+import ProductCard from "@/components/card/ProductCard";
 
 import getProducts, { IProductParams } from "@/actions/getProducts";
 import getCurrentUser from "@/lib/session";

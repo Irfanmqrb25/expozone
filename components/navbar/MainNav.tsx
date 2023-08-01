@@ -20,9 +20,9 @@ interface MainNavProps {
 const MainNav: React.FC<MainNavProps> = ({ session, store, cart }) => {
   const router = useRouter();
   return (
-    <nav className="fixed z-10 w-full py-1 bg-[#F4F7FA] shadow-sm border-y-2">
+    <nav className="fixed z-10 w-full py-1 bg-black shadow-sm">
       <Container>
-        <div className="flex items-center justify-between w-full">
+        <div className="flex items-center justify-between w-full text-white">
           <div className="flex items-center">
             <div className="lg:hidden">
               <MobileSheet />
@@ -36,6 +36,7 @@ const MainNav: React.FC<MainNavProps> = ({ session, store, cart }) => {
                 alt="brand logo"
                 width={35}
                 height={35}
+                className="border border-white"
               />
               <span className="hidden text-3xl font-semibold xl:block">
                 Expozone
@@ -56,7 +57,7 @@ const MainNav: React.FC<MainNavProps> = ({ session, store, cart }) => {
           ) : (
             <Link
               href="/login"
-              className="px-2 py-1 border border-black rounded-sm hover:bg-[#23A094] hover:text-white"
+              className="px-4 py-1 border-2 border-white rounded-sm hover:bg-[#006E7F] hover:text-white"
             >
               Sign in
             </Link>

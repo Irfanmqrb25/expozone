@@ -2,6 +2,8 @@ import "./globals.css";
 import ClientComponent from "@/components/ClientComponent";
 import ToasterProvider from "@/provider/ToasterProvider";
 import { Toaster } from "@/components/ui/toaster";
+import Footer from "@/components/navbar/Footer";
+import "swiper/css";
 
 export const metadata = {
   title: "Expozone",
@@ -21,6 +23,9 @@ export default function RootLayout({
           <ToasterProvider />
         </ClientComponent>
         <div>{children}</div>
+        <div>
+          <Footer />
+        </div>
         <Toaster />
       </body>
     </html>

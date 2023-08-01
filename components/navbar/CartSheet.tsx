@@ -43,7 +43,7 @@ const CartSheet = ({ cart, cartUserId }: CartSheetProps) => {
 
   return (
     <Sheet>
-      <SheetTrigger className="relative p-2 bg-black rounded-sm">
+      <SheetTrigger className="relative p-2 bg-black border-2 border-white rounded-sm">
         {itemCount > 0 && (
           <Badge
             variant="secondary"

@@ -6,7 +6,7 @@ import getCurrentUser from "@/lib/session";
 
 import Container from "@/components/Container";
 import EmptyPage from "@/components/EmptyPage";
-import ProductCard from "@/components/product/ProductCard";
+import ProductCard from "@/components/card/ProductCard";
 
 const StorePage = async () => {
   const store = await getStore();

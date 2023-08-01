@@ -1,0 +1,38 @@
+export const featuredCarouselImage = [
+  {
+    id: 1,
+    color: "bg-[#323232] text-white",
+    title: "Fashion",
+    description: "Get the newest fashion trends!",
+    secDescription: "More than 100+ branded stores are here.",
+    src: "/assets/carousel/featured-1.jpg",
+    href: "/",
+  },
+  {
+    id: 2,
+    color: "bg-[#F5C6EC]",
+    title: "Gaming",
+    description: "Get your best gaming gear!",
+    secDescription: "Get the best offer from the shop.",
+    src: "/assets/carousel/featured-2.jpg",
+    href: "/",
+  },
+  {
+    id: 3,
+    color: "bg-[#006E7F] text-white",
+    title: "Software",
+    description: "Get the software you need!",
+    secDescription: "Get development code from the expert.",
+    src: "/assets/carousel/featured-3.jpg",
+    href: "/",
+  },
+  {
+    id: 4,
+    color: "bg-[#AA77FF]",
+    title: "Everything",
+    description: "Get everything you need here!",
+    secDescription: "Starting from various types of store.",
+    src: "/assets/carousel/featured-4.jpg",
+    href: "/",
+  },
+];

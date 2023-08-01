@@ -10,14 +10,12 @@ import { ImagePlus, Trash } from "lucide-react";
 interface ImageUploadProps {
   disabled?: boolean;
   onChange: (value: string) => void;
-  onRemove: (value: string) => void;
   value: string;
 }
 
 const ImageUpload: React.FC<ImageUploadProps> = ({
   disabled,
   onChange,
-  onRemove,
   value,
 }) => {
   const [isMounted, setIsMounted] = useState(false);
@@ -39,16 +37,6 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
       {value ? (
         <div className="flex items-center gap-4 mb-4">
           <div className="relative w-[200px] h-[200px] rounded-md overflow-hidden">
-            <div className="absolute z-10 top-2 right-2">
-              <Button
-                type="button"
-                onClick={() => {}}
-                variant="destructive"
-                size="sm"
-              >
-                <Trash className="w-4 h-4" />
-              </Button>
-            </div>
             <Image fill className="object-cover" alt="Image" src={value} />
           </div>
         </div>
@@ -71,7 +59,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
               onClick={onClick}
             >
               <ImagePlus className="w-4 h-4 mr-2" />
-              Upload here {`(max 1)`}
+              {value ? "Change image" : `Upload image (max 1)`}
             </Button>
           );
         }}

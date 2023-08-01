@@ -7,8 +7,16 @@ import {
 } from "@/components/ui/card";
 import React from "react";
 import FormProduct from "./FormProduct";
+import getCurrentUser from "@/lib/session";
+import { redirect } from "next/navigation";
 
-const AddProductPage = () => {
+const AddProductPage = async () => {
+  const session = await getCurrentUser();
+
+  if (!session) {
+    redirect("/login");
+  }
+
   return (
     <Card>
       <CardHeader className="space-y-1">

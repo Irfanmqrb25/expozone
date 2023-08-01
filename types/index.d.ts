@@ -4,6 +4,7 @@ export type User =
       name?: string | null | undefined;
       email?: string | null | undefined;
       image?: string | null | undefined;
+      favoriteIds?: string[] | null | undefined;
     }
   | null
   | undefined;
@@ -23,6 +24,7 @@ export type ProductData = {
   image: string;
   price: number;
   category: string;
+  stock: number;
   store: {
     name: string;
     image: string | null;

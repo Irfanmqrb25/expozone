@@ -48,13 +48,13 @@ const AvatarUpload: React.FC<AvatarUploadProps> = ({
             >
               <AiOutlineCamera size={30} />
               {value && (
-                <div className="absolute inset-3">
+                <div className="absolute inset-0 w-full h-full">
                   <Image
                     alt="upload"
                     fill
                     style={{ objectFit: "cover" }}
-                    className="rounded-[50%] object-center"
                     src={value}
+                    className="rounded-[50%]"
                   />
                 </div>
               )}

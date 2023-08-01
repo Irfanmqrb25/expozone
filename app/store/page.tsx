@@ -6,7 +6,12 @@ import UpdateStoreForm from "./UpdateStoreForm";
 const StorePage = async () => {
   const store = await getStore();
 
-  if (!store) return <EmptyStore />;
+  if (!store)
+    return (
+      <div className="min-h-[80vh]">
+        <EmptyStore />
+      </div>
+    );
 
   return <UpdateStoreForm store={store} />;
 };

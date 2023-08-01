@@ -2,7 +2,14 @@
 import { useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
 
-import { LogOut, User, Store, Settings } from "lucide-react";
+import {
+  LogOut,
+  User,
+  Store,
+  Settings,
+  ShoppingBag,
+  Heart,
+} from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,6 +25,7 @@ import useCreateStoreModal from "@/hooks/useCreateStoreModal";
 import { User as UserType, Store as StoreType } from "@/types";
 import { signOut } from "next-auth/react";
 import { Button } from "../ui/button";
+import Link from "next/link";
 
 const AvatarProfile = ({
   session,
@@ -72,16 +80,28 @@ const AvatarProfile = ({
                 <User className="w-4 h-4 mr-2" />
                 <span>Account</span>
               </DropdownMenuItem>
-              <DropdownMenuItem className="cursor-pointer">
-                <Settings className="w-4 h-4 mr-2" />
-                <span>Settings</span>
-              </DropdownMenuItem>
               <DropdownMenuItem
                 className="cursor-pointer"
                 onClick={onCreateStoreModal}
               >
                 <Store className="w-4 h-4 mr-2" />
-                <span>My Store</span>
+                <span>Store</span>
+              </DropdownMenuItem>
+              <Link href="/order">
+                <DropdownMenuItem className="flex items-center cursor-pointer">
+                  <ShoppingBag className="w-4 h-4 mr-2" />
+                  <span>Order</span>
+                </DropdownMenuItem>
+              </Link>
+              <Link href="/favorites">
+                <DropdownMenuItem className="flex items-center cursor-pointer">
+                  <Heart className="w-4 h-4 mr-2" />
+                  <span>Favorites</span>
+                </DropdownMenuItem>
+              </Link>
+              <DropdownMenuItem className="cursor-pointer">
+                <Settings className="w-4 h-4 mr-2" />
+                <span>Settings</span>
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator className="bg-neutral-100" />

@@ -22,7 +22,7 @@ import clsx from "clsx";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
 import ImageUpload from "@/components/input/ImageUpload";
-import { Loader2, X } from "lucide-react";
+import { Loader2 } from "lucide-react";
 
 interface FormUpdateProductProps {
   data: any;

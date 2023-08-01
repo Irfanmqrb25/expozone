@@ -14,7 +14,7 @@ export default async function getProductByStore(): Promise<ProductsColumn[]> {
     }
 
     if (!store) {
-      throw new Error("Store not found or you not have a store");
+      return [];
     }
 
     const products = await prisma.product.findMany({

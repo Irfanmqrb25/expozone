@@ -15,14 +15,14 @@ import {
 import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/components/ui/use-toast";
 import { categories } from "@/components/navbar/Categories";
-
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import { BsCurrencyDollar } from "react-icons/bs";
-import clsx from "clsx";
-import axios from "axios";
 import { Button } from "@/components/ui/button";
 import ImageUpload from "@/components/input/ImageUpload";
+
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import clsx from "clsx";
+import axios from "axios";
 import { Loader2 } from "lucide-react";
+import { BsCurrencyDollar } from "react-icons/bs";
 
 const FormProduct = () => {
   const router = useRouter();

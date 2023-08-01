@@ -243,7 +243,6 @@ const LandingPage = () => {
           Start Selling
         </button>
       </div>
-      <Footer />
     </div>
   );
 };

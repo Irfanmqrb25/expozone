@@ -1,3 +1,4 @@
+import { getCart } from "@/actions/cart";
 import Container from "@/components/Container";
 import MainNav from "@/components/navbar/MainNav";
 import getCurrentUser from "@/lib/session";
@@ -15,9 +16,10 @@ export default async function Layout({
   children: React.ReactNode;
 }) {
   const session = await getCurrentUser();
+  const cart = await getCart();
   return (
     <div className={fredoka.className}>
-      <MainNav session={session} />
+      <MainNav session={session} cart={cart} />
       <Container>
         <div className="pt-20">{children}</div>
       </Container>

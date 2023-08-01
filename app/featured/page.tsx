@@ -1,40 +1,131 @@
-import React from "react";
+import Link from "next/link";
 
-import Container from "@/components/Container";
-import RemoveFilter from "@/components/RemoveFilter";
-import ProductCard from "@/components/product/ProductCard";
+import ProductCard from "@/components/card/ProductCard";
+import FeaturedCarousel from "@/components/carousel/FeaturedCarousel";
+import { Card } from "@/components/ui/card";
 
 import getProducts, { IProductParams } from "@/actions/getProducts";
+import getFeatured from "@/actions/getFeatured";
 import getCurrentUser from "@/lib/session";
+
+import { ChevronRightIcon } from "lucide-react";
 
 interface HomePageProps {
   searchParams: IProductParams;
 }
 
 const HomePage = async ({ searchParams }: HomePageProps) => {
-  const products = await getProducts(searchParams);
+  // const products = await getProducts(searchParams);
   const session = await getCurrentUser();
-
-  if (products?.length === 0) {
-    return (
-      <Container>
-        <RemoveFilter title="Product Not Found" reset />
-      </Container>
-    );
-  }
+  const fashionProducts = await getFeatured({ category: "Fashion" });
+  const gamingProducts = await getFeatured({ category: "Gaming" });
+  const softwareProducts = await getFeatured({ category: "Software" });
 
   return (
-    <Container>
-      <div className="grid grid-cols-1 gap-5 pt-20 mx-1 md:gap-3 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-        {products?.map((product) => (
-          <ProductCard
-            session={session}
-            key={product.id}
-            productData={product}
-          />
-        ))}
+    <div className="flex flex-col gap-5">
+      <div>
+        <FeaturedCarousel />
       </div>
-    </Container>
+      <div className="flex flex-col gap-4 mt-5 text-center">
+        <h1 className="text-3xl font-semibold md:text-5xl">
+          Welcome to Expozone
+        </h1>
+        <p className="px-0 md:text-lg lg:px-48 text-muted-foreground">
+          Expozone - An easy and complete shopping place! Explore a Vast World
+          of Products and Unbeatable Offers. Enjoy the Happiness of Seamless
+          Online Shopping with Us. Discover a World of Convenience, Variety and
+          Savings at Expozone, Your Ultimate Ecommerce Wonderland.
+        </p>
+      </div>
+      <Card className="flex flex-col py-16 text-center border-2 border-black my-14 gap-7">
+        <h1 className="text-2xl font-semibold md:text-3xl">
+          Sell or buy the product you want here!
+        </h1>
+        <div className="flex items-center justify-center w-full gap-2">
+          <Link
+            href={"/store"}
+            className="inline-flex items-center justify-center px-3 text-sm font-medium transition-colors border-2 border-black rounded-md hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background h-9"
+          >
+            Create store
+          </Link>
+          <Link
+            href={"/products"}
+            className="inline-flex items-center justify-center px-3 text-sm font-medium transition-colors rounded-md h-9 bg-primary text-primary-foreground hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background"
+          >
+            Buy product
+          </Link>
+        </div>
+      </Card>
+      <div className="flex flex-col gap-14">
+        <div className="flex flex-col gap-5">
+          <div className="flex items-center justify-between">
+            <h1 className="text-xl font-medium md:text-3xl">
+              Featured Fashion
+            </h1>
+            <Link
+              href="/products?category=Fashion"
+              className="flex items-center"
+            >
+              View all
+              <ChevronRightIcon size={16} />
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 gap-5 mx-1 md:gap-3 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+            {fashionProducts?.map((product) => (
+              <ProductCard
+                key={product.id}
+                productData={product}
+                session={session}
+              />
+            ))}
+          </div>
+        </div>
+        <div className="flex flex-col gap-5">
+          <div className="flex items-center justify-between">
+            <h1 className="text-xl font-medium md:text-3xl">Featured Gaming</h1>
+            <Link
+              href="/products?category=Gaming"
+              className="flex items-center"
+            >
+              View all
+              <ChevronRightIcon size={16} />
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 gap-5 mx-1 md:gap-3 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+            {gamingProducts?.map((product) => (
+              <ProductCard
+                key={product.id}
+                productData={product}
+                session={session}
+              />
+            ))}
+          </div>
+        </div>
+        <div className="flex flex-col gap-5">
+          <div className="flex items-center justify-between">
+            <h1 className="text-xl font-medium md:text-3xl">
+              Featured Software
+            </h1>
+            <Link
+              href="/products?category=Software"
+              className="flex items-center"
+            >
+              View all
+              <ChevronRightIcon size={16} />
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 gap-5 mx-1 md:gap-3 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+            {softwareProducts?.map((product) => (
+              <ProductCard
+                key={product.id}
+                productData={product}
+                session={session}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

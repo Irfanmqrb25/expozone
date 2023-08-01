@@ -6,9 +6,10 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { ColumnDef } from "@tanstack/react-table";
 import { DataTable } from "../ui/data-table";
 import { useToast } from "../ui/use-toast";
-import CellActions from "./cell-actions";
+import CellActionsProduct from "./cell-actions-product";
 
 import axios from "axios";
+import { Store } from "@/types";
 
 export type ProductsColumn = {
   id: string;
@@ -22,9 +23,13 @@ export type ProductsColumn = {
 
 interface ProductTableProps {
   productData: ProductsColumn[];
+  store: Store;
 }
 
-export default function ProductTableClient({ productData }: ProductTableProps) {
+export default function ProductTable({
+  productData,
+  store,
+}: ProductTableProps) {
   const [selectedRowIds, setSelectedRowIds] = React.useState<string[]>([]);
   const { toast } = useToast();
   const router = useRouter();
@@ -89,7 +94,7 @@ export default function ProductTableClient({ productData }: ProductTableProps) {
     },
     {
       id: "actions",
-      cell: ({ row }) => <CellActions data={row.original} />,
+      cell: ({ row }) => <CellActionsProduct data={row.original} />,
     },
   ];
 
@@ -116,6 +121,7 @@ export default function ProductTableClient({ productData }: ProductTableProps) {
 
   return (
     <DataTable
+      store={store}
       columns={columns}
       data={productData}
       deleteRowsAction={() => void handleDeleteSelected()}

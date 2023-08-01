@@ -25,7 +25,7 @@ export default async function Layout({
     <div className={fredoka.className}>
       <CreateStoreModal />
       <MainNav session={session} store={store} cart={cart} />
-      <div>{children}</div>
+      <div className="min-h-screen">{children}</div>
       <Toaster />
     </div>
   );

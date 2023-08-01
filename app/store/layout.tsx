@@ -7,6 +7,7 @@ import StoreTabs from "./StoreTabs";
 import Container from "@/components/Container";
 import Image from "next/image";
 import { redirect } from "next/navigation";
+import { getCart } from "@/actions/cart";
 
 const fredoka = Fredoka({
   weight: ["300", "400", "500", "600"],
@@ -21,6 +22,7 @@ export default async function Layout({
 }) {
   const store = await getStore();
   const session = await getCurrentUser();
+  const cart = await getCart();
 
   if (!session) {
     redirect("/login");
@@ -28,7 +30,7 @@ export default async function Layout({
   return (
     <div className={fredoka.className}>
       <CreateStoreModal />
-      <MainNav session={session} store={store} />
+      <MainNav session={session} store={store} cart={cart} />
       <Container>
         <div className="pt-20">
           {store ? (
