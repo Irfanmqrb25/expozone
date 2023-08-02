@@ -11,18 +11,23 @@ import { BiNews } from "react-icons/bi";
 import { MdOutlineFeaturedPlayList, MdOutlineSell } from "react-icons/md";
 import { Slant as Hamburger } from "hamburger-react";
 import clsx from "clsx";
+import { User } from "@/types";
 
 const fredoka = Fredoka({
   weight: ["600"],
   subsets: ["latin"],
 });
 
+interface HeaderProps {
+  session: User;
+}
+
 const patrickHand = Patrick_Hand({
   weight: ["400"],
   subsets: ["latin"],
 });
 
-const Header = () => {
+const Header: React.FC<HeaderProps> = ({ session }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setOpen] = useState(false);
 
@@ -65,14 +70,16 @@ const Header = () => {
           >
             EXPOZONE
           </h1>
-          <div className="border-l-2 border-black px-14 py-[29px] hover:bg-[#23A094] cursor-pointer">
-            <Link
-              href="/login"
-              className={clsx("text-2xl", patrickHand.className)}
-            >
-              LOGIN
-            </Link>
-          </div>
+          <Link
+            href={session ? "/featured" : "/login"}
+            className="border-l-2 border-black px-14 py-[29px] hover:bg-[#23A094] cursor-pointer"
+          >
+            {session ? (
+              <p className={clsx("text-2xl", patrickHand.className)}>NEXT</p>
+            ) : (
+              <p className={clsx("text-2xl", patrickHand.className)}>LOGIN</p>
+            )}
+          </Link>
         </div>
 
         <div
@@ -104,7 +111,7 @@ const Header = () => {
                     fredoka.className
                   )}
                 >
-                  XPOZONE
+                  EXPOZONE
                 </h1>
               </div>
             )}
@@ -114,7 +121,9 @@ const Header = () => {
                 isScrolled ? "space-x-16" : "space-x-24"
               )}
             >
-              <Link href="/">HOME</Link>
+              <Link href="/" className="underline underline-offset-4">
+                HOME
+              </Link>
               <Link href="/featured">FEATURED</Link>
               <p>NEW ARRIVALS</p>
               <p>PRODUCTS</p>
@@ -122,10 +131,10 @@ const Header = () => {
             </ul>
             {isScrolled && (
               <Link
-                href="/login"
+                href={session ? "/featured" : "/login"}
                 className="border border-black px-6 py-2 hover:bg-[#23A094] hover:text-white tracking-wider"
               >
-                Login
+                {session ? "NEXT" : "LOGIN"}
               </Link>
             )}
           </div>

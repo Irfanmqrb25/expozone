@@ -70,7 +70,7 @@ const HomePage = async ({ searchParams }: HomePageProps) => {
               <ChevronRightIcon size={16} />
             </Link>
           </div>
-          <div className="grid grid-cols-1 gap-5 mx-1 md:gap-3 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+          <div className="grid grid-cols-1 gap-5 mx-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:gap-3 2xl:gap-5 xl:grid-cols-5">
             {fashionProducts?.map((product) => (
               <ProductCard
                 key={product.id}
@@ -91,7 +91,7 @@ const HomePage = async ({ searchParams }: HomePageProps) => {
               <ChevronRightIcon size={16} />
             </Link>
           </div>
-          <div className="grid grid-cols-1 gap-5 mx-1 md:gap-3 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+          <div className="grid grid-cols-1 gap-5 mx-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:gap-3 2xl:gap-5 xl:grid-cols-5">
             {gamingProducts?.map((product) => (
               <ProductCard
                 key={product.id}
@@ -114,7 +114,7 @@ const HomePage = async ({ searchParams }: HomePageProps) => {
               <ChevronRightIcon size={16} />
             </Link>
           </div>
-          <div className="grid grid-cols-1 gap-5 mx-1 md:gap-3 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+          <div className="grid grid-cols-1 gap-5 mx-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:gap-3 2xl:gap-5 xl:grid-cols-5">
             {softwareProducts?.map((product) => (
               <ProductCard
                 key={product.id}

@@ -10,7 +10,7 @@ import {
   VscDebugBreakpointDataUnverified,
   VscDebugBreakpointLogUnverified,
 } from "react-icons/vsc";
-import Footer from "@/components/navbar/Footer";
+import getCurrentUser from "@/lib/session";
 
 const fredoka = Fredoka({
   weight: ["400", "500", "600"],
@@ -24,10 +24,11 @@ const patrickHand = Patrick_Hand({
   variable: "--patrick-hand",
 });
 
-const LandingPage = () => {
+const LandingPage = async () => {
+  const session = await getCurrentUser();
   return (
     <div className="flex flex-col">
-      <Header />
+      <Header session={session} />
       <div className="flex flex-col w-full mt-16 border-b-2 border-black lg:flex-row lg:mt-0">
         <div className="flex flex-col items-center border-b-2 xl:border-b-0 lg:border-r-2 border-black justify-center mx-auto space-y-6 lg:space-y-4 bg-[#FF6D28] w-full lg:w-1/2 h-[500px] text-center">
           <h2
@@ -36,7 +37,7 @@ const LandingPage = () => {
               fredoka.className
             )}
           >
-            SELL YOUR PRODUCT IN EXPOZONE
+            SELL & BUY PRODUCT IN EXPOZONE
           </h2>
           <p
             className={clsx(
@@ -44,8 +45,8 @@ const LandingPage = () => {
               patrickHand.className
             )}
           >
-            Make your money from $0 without charge And make your product to be
-            number one.
+            Swift Solutions for Your Desires: Instant Money, Coveted Items.
+            Embrace Abundance Now!
           </p>
           <Link
             href="/featured"
@@ -83,7 +84,8 @@ const LandingPage = () => {
           START YOUR JOURNEY!
         </p>
         <p className="flex text-lg text-center md:text-xl text-neutral-400">
-          Create a shop now and make a lot of money later...
+          Unleash a Profitable Future: Launch Your Store Today, Reap Abundance
+          Tomorrow! Let Success Follow Your Every Step.
         </p>
       </div>
       <div className="flex flex-col w-full border-black lg:flex-row border-y-2">
@@ -105,25 +107,42 @@ const LandingPage = () => {
                 fredoka.className
               )}
             >
-              SELL PRODUCT!
+              HOW TO BECOME A SELLER?
             </p>
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-7">
               <div className="flex flex-row items-center gap-2">
                 <VscDebugBreakpointDataUnverified className="text-lg" />
                 <p className={clsx("md:text-lg", patrickHand.className)}>
-                  Don&apos;t take big risks
+                  Smart Steps, Big Rewards: Become a Seller with Confidence!
+                  Start Small, Grow Big.
                 </p>
               </div>
               <div className="flex flex-row items-center gap-2">
                 <VscDebugBreakpointDataUnverified className="text-lg" />
                 <p className={clsx("text-lg", patrickHand.className)}>
-                  Start selling product on a small scale
+                  Dip Your Toes First: Minimize Risks, Maximize Gains. Kickstart
+                  Your Selling Journey!
                 </p>
               </div>
               <div className="flex flex-row items-center gap-2">
                 <VscDebugBreakpointDataUnverified className="text-lg" />
                 <p className={clsx("text-lg", patrickHand.className)}>
-                  Makes your product as attractive as possible
+                  Win Hearts, Win Sales: Create Irresistible Products that
+                  Captivate Customers!
+                </p>
+              </div>
+              <div className="flex flex-row items-center gap-2">
+                <VscDebugBreakpointDataUnverified className="text-lg" />
+                <p className={clsx("text-lg", patrickHand.className)}>
+                  Unleash Your Inner Entrepreneur: Sell Smarter, Not Harder!
+                  Start Small, Scale Steadily, Prosper Endlessly.
+                </p>
+              </div>
+              <div className="flex flex-row items-center gap-2">
+                <VscDebugBreakpointDataUnverified className="text-lg" />
+                <p className={clsx("text-lg", patrickHand.className)}>
+                  Empower Your Selling Potential: Think Big, Act Bold! Elevate
+                  Your Product&apos;s Allure and Witness Sales Soar!
                 </p>
               </div>
             </div>
@@ -136,8 +155,10 @@ const LandingPage = () => {
           patrickHand.className
         )}
       >
-        “Only you can initiate change in your life. Dare to take action, and
-        believe in the extraordinary potential that you have”.
+        “Discover the Gateway to Empowerment: Embrace Your Untapped Potential,
+        Embark on an Exciting Ecommerce Adventure, and Witness Extraordinary
+        Success Unfold. Take the Leap Now and Watch Your Dreams Flourish Beyond
+        Imagination!”.
       </div>
       <div className="flex flex-col w-full border-black lg:flex-row border-y-2">
         <div className="flex flex-col border-b-2 xl:border-b-0 lg:border-r-2 border-black bg-[#F5C6EC] w-full lg:w-1/2 h-[500px]">
@@ -175,38 +196,36 @@ const LandingPage = () => {
               <div className="flex flex-row items-center gap-2">
                 <VscDebugBreakpointLogUnverified className="text-lg" />
                 <p className={clsx("md:text-lg", patrickHand.className)}>
-                  Blogs
+                  Fashion
                 </p>
               </div>
               <div className="flex flex-row items-center gap-2">
                 <VscDebugBreakpointLogUnverified className="text-lg" />
-                <p className={clsx("text-lg", patrickHand.className)}>
-                  Nice Stuff
-                </p>
+                <p className={clsx("text-lg", patrickHand.className)}>Design</p>
               </div>
               <div className="flex flex-row items-center gap-2">
                 <VscDebugBreakpointLogUnverified className="text-lg" />
                 <p className={clsx("text-lg", patrickHand.className)}>
-                  Application
+                  Software
                 </p>
               </div>
               <div className="flex flex-row items-center gap-2">
                 <VscDebugBreakpointLogUnverified className="text-lg" />
-                <p className={clsx("text-lg", patrickHand.className)}>
-                  Video Digital
-                </p>
+                <p className={clsx("text-lg", patrickHand.className)}>Video</p>
               </div>
               <div className="flex flex-row items-center gap-2">
                 <VscDebugBreakpointLogUnverified className="text-lg" />
                 <p className={clsx("text-lg", patrickHand.className)}>
-                  Template Design
+                  Electronic
                 </p>
               </div>
               <div className="flex flex-row items-center gap-2">
                 <VscDebugBreakpointLogUnverified className="text-lg" />
-                <p className={clsx("text-lg", patrickHand.className)}>
-                  Sell Anything Whatever You Want
-                </p>
+                <p className={clsx("text-lg", patrickHand.className)}>Games</p>
+              </div>
+              <div className="flex flex-row items-center gap-2">
+                <VscDebugBreakpointLogUnverified className="text-lg" />
+                <p className={clsx("text-lg", patrickHand.className)}>Etc.</p>
               </div>
             </div>
           </div>
@@ -220,8 +239,7 @@ const LandingPage = () => {
       >
         <p className="text-5xl tracking-wider md:text-6xl">1,450,290 +</p>
         <p className="text-2xl tracking-wider md:text-3xl">
-          Sellers who trust to sell their products at Expozone. What are you
-          waiting for?
+          Expozone, a place where everyone can find everything. Join now!
         </p>
       </div>
       <div className="flex flex-col items-center gap-5 py-20 md:py-28 bg-[#23A094] text-white border-black border-y-2">
@@ -234,14 +252,15 @@ const LandingPage = () => {
           <p>Share your product!</p>
           <p>For someone in need out there.</p>
         </div>
-        <button
+        <Link
+          href="/login"
           className={clsx(
             "px-5 py-2 bg-black border border-white rounded-sm tracking-wider hover:scale-105 duration-100 ease-in-out",
             patrickHand.className
           )}
         >
           Start Selling
-        </button>
+        </Link>
       </div>
     </div>
   );

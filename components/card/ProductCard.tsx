@@ -13,7 +13,7 @@ import {
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "../ui/button";
 import { AspectRatio } from "../ui/aspect-ratio";
-import { DollarSignIcon } from "lucide-react";
+import { DollarSignIcon, PlusIcon, ShoppingCart, Wallet } from "lucide-react";
 
 import { ProductData, User } from "@/types";
 import { useState } from "react";
@@ -68,7 +68,7 @@ const ProductCard: React.FC<ProductCard> = ({ productData, session }) => {
   };
 
   return (
-    <Card className="h-full overflow-hidden border-2 border-black rounded-sm">
+    <Card className="h-full overflow-hidden border-2 border-black rounded-sm shadow-card">
       <CardHeader className="p-0 border-b-2 border-black">
         <AspectRatio ratio={4 / 3} className="relative overflow-hidden">
           <Link href={`/${storeUrl}/${productData.id}`}>
@@ -108,21 +108,23 @@ const ProductCard: React.FC<ProductCard> = ({ productData, session }) => {
         </CardContent>
       </Link>
       <CardFooter className="p-4">
-        <div className="flex flex-col items-center w-full gap-2 sm:flex-row sm:justify-between">
+        <div className="flex flex-row items-center w-full gap-2">
           <Button
             variant="outline"
-            className="w-full border-2 border-black"
+            className="flex items-center w-full gap-1 border-2 border-black"
             disabled={loading}
             onClick={() => router.push(`/buy/${productData.id}`)}
           >
-            Buy now
+            <Wallet size={16} />
+            Buy
           </Button>
           <Button
-            className="w-full"
+            className="flex items-center w-full gap-1"
             onClick={session ? handleAddToCart : () => router.push("/login")}
             disabled={loading}
           >
-            Add to cart
+            <ShoppingCart size={16} />
+            Cart
           </Button>
         </div>
       </CardFooter>

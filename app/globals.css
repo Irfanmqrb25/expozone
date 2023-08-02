@@ -85,3 +85,12 @@
 .swiper-pagination-bullet-prev {
   background-color: red !important;
 }
+
+.shadow-button:hover {
+  box-shadow: 7px 7px #FCE700, 14px 14px #AA77FF;
+}
+
+.shadow-card:hover {
+  box-shadow: 7px 7px;
+  transition: 0.4s all;
+}
