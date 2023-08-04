@@ -117,7 +117,7 @@ model Order {
   address       String
   postalCode    String
   payment       String
-  cardNumber    String
+  cardNumber    String?
   productId     String      @db.ObjectId
   quantity      Int
   shipment      String

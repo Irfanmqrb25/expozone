@@ -29,12 +29,7 @@ export default async function getProducts(params: IProductParams) {
         createdAt: "desc",
       },
       include: {
-        store: {
-          select: {
-            name: true,
-            image: true,
-          },
-        },
+        store: true,
       },
     });
 

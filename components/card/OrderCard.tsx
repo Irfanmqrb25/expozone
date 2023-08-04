@@ -67,7 +67,7 @@ const OrderCard: React.FC<OrderCardProps> = ({ order }) => {
             href={`/order/details/${order.id}`}
             className="inline-flex items-center justify-center w-full px-3 text-sm font-medium transition-colors border-2 border-black rounded-md hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background h-9"
           >
-            View details
+            Details
           </Link>
           {order.status === "finished" ? (
             <Button size="sm" className="w-full">

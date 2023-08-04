@@ -21,7 +21,7 @@ export default async function Layout({
     <div className={fredoka.className}>
       <MainNav session={session} cart={cart} />
       <Container>
-        <div className="pt-20">{children}</div>
+        <div className="min-h-screen pt-20">{children}</div>
       </Container>
     </div>
   );

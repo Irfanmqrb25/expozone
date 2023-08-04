@@ -1,6 +1,9 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useToast } from "../ui/use-toast";
+import { useState } from "react";
 
 import {
   Card,
@@ -13,14 +16,12 @@ import {
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "../ui/button";
 import { AspectRatio } from "../ui/aspect-ratio";
-import { DollarSignIcon, PlusIcon, ShoppingCart, Wallet } from "lucide-react";
+import { DollarSignIcon, ShoppingCart, Wallet } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
+import FavoriteButton from "../FavoriteButton";
 
 import { ProductData, User } from "@/types";
-import { useState } from "react";
 import axios from "axios";
-import { useToast } from "../ui/use-toast";
-import { useRouter } from "next/navigation";
-import FavoriteButton from "../FavoriteButton";
 
 interface ProductCard {
   productData: ProductData;
@@ -35,8 +36,8 @@ const ProductCard: React.FC<ProductCard> = ({ productData, session }) => {
 
   const storeUrl =
     productData.store.name.split(" ").length > 1
-      ? productData.store.name.toLowerCase().replace(/\s+/g, "-")
-      : productData.store.name.toLowerCase();
+      ? productData.store.name.replace(/\s+/g, "-")
+      : productData.store.name;
 
   const handleAddToCart = async () => {
     setLoading(true);
@@ -86,27 +87,25 @@ const ProductCard: React.FC<ProductCard> = ({ productData, session }) => {
           </div>
         </AspectRatio>
       </CardHeader>
-      <Link href={`/${storeUrl}/${productData.id}`}>
-        <CardContent className="grid gap-2.5 p-4 border-b-2 border-black">
-          <CardTitle className="text-lg font-medium line-clamp-1">
-            {productData.name}
-          </CardTitle>
-          <CardDescription className="flex items-center text-lg line-clamp-1">
-            <DollarSignIcon size={16} />
-            {productData.price.toFixed(2)}
-          </CardDescription>
-          <div className="flex items-center gap-1">
-            <Avatar className="border-2 border-black w-7 h-7">
-              <AvatarImage
-                src={productData.store.image || "/assets/blank-user.jpg"}
-                alt="avatar"
-                className="object-cover"
-              />
-            </Avatar>
-            <span className="line-clamp-1">{productData.store.name}</span>
-          </div>
-        </CardContent>
-      </Link>
+      <CardContent className="grid gap-2.5 p-4 border-b-2 border-black">
+        <CardTitle className="text-lg font-medium line-clamp-1">
+          {productData.name}
+        </CardTitle>
+        <CardDescription className="flex items-center text-lg line-clamp-1">
+          <DollarSignIcon size={16} />
+          {productData.price.toFixed(2)}
+        </CardDescription>
+        <Link href={`/visit/${storeUrl}`} className="flex items-center gap-1">
+          <Avatar className="border-2 border-black w-7 h-7">
+            <AvatarImage
+              src={productData.store.image ?? "/assets/blank-user.jpg"}
+              alt="avatar"
+              className="object-cover"
+            />
+          </Avatar>
+          <p className="line-clamp-1">{productData.store.name}</p>
+        </Link>
+      </CardContent>
       <CardFooter className="p-4">
         <div className="flex flex-row items-center w-full gap-2">
           <Button

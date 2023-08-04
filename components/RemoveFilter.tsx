@@ -15,7 +15,7 @@ const RemoveFilter: React.FC<RemoveFilter> = ({ title, reset }) => {
       {reset && (
         <div
           className="px-2 py-1 border border-black rounded-sm cursor-pointer hover:bg-black hover:text-white"
-          onClick={() => router.push("/home")}
+          onClick={() => router.push("/products")}
         >
           Remove Filters
         </div>

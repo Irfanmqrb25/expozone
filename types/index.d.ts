@@ -26,6 +26,7 @@ export type ProductData = {
   category: string;
   stock: number;
   store: {
+    id: string;
     name: string;
     image: string | null;
   };

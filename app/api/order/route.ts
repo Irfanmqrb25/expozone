@@ -31,7 +31,6 @@ export async function POST(request: Request) {
     !address ||
     !postalCode ||
     !payment ||
-    !cardNumber ||
     !shipment
   ) {
     return NextResponse.error();

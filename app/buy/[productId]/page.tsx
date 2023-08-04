@@ -20,7 +20,7 @@ const BuyPage = async ({ params }: { params: IParams }) => {
   return (
     <Card className="border-2 border-black">
       <CardHeader>
-        <CardTitle>Product</CardTitle>
+        <CardTitle>Checkout</CardTitle>
         <CardDescription>
           make sure the product you want to buy is correct
         </CardDescription>

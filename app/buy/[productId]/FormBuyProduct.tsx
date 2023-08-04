@@ -90,6 +90,7 @@ const FormBuyProduct: React.FC<FormBuyProductProps> = ({ product }) => {
   };
 
   const quantity = watch("quantity");
+  const payment = watch("payment");
 
   const subtotalProduct = product.price * quantity;
   const totalPrice = subtotalProduct + shipmentFee + serviceFee;
@@ -112,7 +113,7 @@ const FormBuyProduct: React.FC<FormBuyProductProps> = ({ product }) => {
     try {
       await axios.post("/api/order", data);
       router.refresh();
-      router.push("/featured");
+      router.push("/order");
       toast({
         title: "Success✅",
         description: "Thank you for your purchase!.",
@@ -302,20 +303,22 @@ const FormBuyProduct: React.FC<FormBuyProductProps> = ({ product }) => {
               Apple
             </Label>
           </RadioGroup>
-          <div className="grid gap-2">
-            <Label htmlFor="number">{`Card number (don't take it seriously)`}</Label>
-            <Input
-              id="cardNumber"
-              placeholder="123456789"
-              {...register("cardNumber", { required: true })}
-              className={clsx(
-                errors["cardNumber"]
-                  ? "focus-visible:ring-red-500 border-red-300"
-                  : ""
-              )}
-              disabled={loading}
-            />
-          </div>
+          {payment === "card" ? (
+            <div className="grid gap-2">
+              <Label htmlFor="number">{`Card number (don't take it seriously)`}</Label>
+              <Input
+                id="cardNumber"
+                placeholder="123456789"
+                {...register("cardNumber", { required: true })}
+                className={clsx(
+                  errors["cardNumber"]
+                    ? "focus-visible:ring-red-500 border-red-300"
+                    : ""
+                )}
+                disabled={loading}
+              />
+            </div>
+          ) : null}
         </CardContent>
       </Card>
       <CardFooter className="flex flex-col items-start w-full gap-3 p-0">

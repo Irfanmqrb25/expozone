@@ -24,6 +24,7 @@ import { BsArrowUpRight } from "react-icons/bs";
 import { DollarSign, Loader2 } from "lucide-react";
 import { User } from "@/types";
 import axios from "axios";
+import Link from "next/link";
 
 interface DetailProductPageClientProps {
   product: any;
@@ -37,6 +38,11 @@ const DetailProductPageClient: React.FC<DetailProductPageClientProps> = ({
   const router = useRouter();
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
+
+  const storeUrl =
+    product.store.name.split(" ").length > 1
+      ? product.store.name.replace(/\s+/g, "-")
+      : product.store.name;
 
   const handleAddToCart = async () => {
     setLoading(true);
@@ -70,7 +76,15 @@ const DetailProductPageClient: React.FC<DetailProductPageClientProps> = ({
   return (
     <div>
       <Breadcrumbs>
-        <BreadcrumbsItem href="/products" label="Product" />
+        <BreadcrumbsItem
+          href={`/visit/${storeUrl}`}
+          label={product.store.name}
+        />
+        <BreadcrumbsIcon />
+        <BreadcrumbsItem
+          href={`/visit/${storeUrl}/products`}
+          label="Products"
+        />
         <BreadcrumbsIcon />
         <BreadcrumbsItem disabled label={product?.name!} />
       </Breadcrumbs>
@@ -86,7 +100,10 @@ const DetailProductPageClient: React.FC<DetailProductPageClientProps> = ({
             />
           </div>
           <div className="flex items-center justify-between w-full px-2 py-2 border-2 border-black rounded-sm">
-            <div className="flex items-center gap-2">
+            <Link
+              href={`/visit/${storeUrl}`}
+              className="flex items-center gap-2"
+            >
               <Avatar className="border-2 border-black w-9 h-9">
                 <AvatarImage
                   src={product?.store?.image || "/assets/blank-user.jpg"}
@@ -96,10 +113,13 @@ const DetailProductPageClient: React.FC<DetailProductPageClientProps> = ({
               <span className="text-lg font-medium">
                 {product?.store?.name}
               </span>
-            </div>
-            <div className="flex items-center gap-1 mr-2 cursor-pointer">
+            </Link>
+            <Link
+              href={`/visit/${storeUrl}`}
+              className="flex items-center gap-1 mr-2 cursor-pointer"
+            >
               <BsArrowUpRight className="text-sm" />
-            </div>
+            </Link>
           </div>
         </div>
         <div className="flex flex-col md:w-[40%] gap-5 w-full">
