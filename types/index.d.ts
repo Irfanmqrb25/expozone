@@ -4,7 +4,9 @@ export type User =
       name?: string | null | undefined;
       email?: string | null | undefined;
       image?: string | null | undefined;
+      createdAt?: Date | null | undefined;
       favoriteIds?: string[] | null | undefined;
+      hashedPassword?: string | null | undefined;
     }
   | null
   | undefined;

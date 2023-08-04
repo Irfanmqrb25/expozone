@@ -2,14 +2,7 @@
 import { useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
 
-import {
-  LogOut,
-  User,
-  Store,
-  Settings,
-  ShoppingBag,
-  Heart,
-} from "lucide-react";
+import { LogOut, User, Store, ShoppingBag, Heart } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -76,10 +69,12 @@ const AvatarProfile = ({
             </DropdownMenuLabel>
             <DropdownMenuSeparator className="bg-neutral-100" />
             <DropdownMenuGroup>
-              <DropdownMenuItem className="cursor-pointer">
-                <User className="w-4 h-4 mr-2" />
-                <span>Account</span>
-              </DropdownMenuItem>
+              <Link href="/profile">
+                <DropdownMenuItem className="cursor-pointer">
+                  <User className="w-4 h-4 mr-2" />
+                  <span>Profile</span>
+                </DropdownMenuItem>
+              </Link>
               <DropdownMenuItem
                 className="cursor-pointer"
                 onClick={onCreateStoreModal}
@@ -99,10 +94,6 @@ const AvatarProfile = ({
                   <span>Favorites</span>
                 </DropdownMenuItem>
               </Link>
-              <DropdownMenuItem className="cursor-pointer">
-                <Settings className="w-4 h-4 mr-2" />
-                <span>Settings</span>
-              </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator className="bg-neutral-100" />
             <DropdownMenuItem

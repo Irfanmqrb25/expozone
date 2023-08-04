@@ -10,17 +10,9 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
-import { RxHamburgerMenu } from "react-icons/rx";
 import clsx from "clsx";
 import { ScrollArea } from "../ui/scroll-area";
-import {
-  ChevronRightSquare,
-  HomeIcon,
-  Menu,
-  Search,
-  ShoppingBag,
-  Store,
-} from "lucide-react";
+import { HomeIcon, Menu, Search, ShoppingBag, Store } from "lucide-react";
 
 const fredoka = Fredoka({
   weight: ["300", "400", "500", "600"],
@@ -52,15 +44,15 @@ const MobileSheet = () => {
             <HomeIcon size={18} />
           </Link>
           <hr className="mt-2 mb-4" />
-          <div className="flex justify-between">
+          <Link href="/discover" className="flex justify-between">
             <p className="font-medium font">Discover</p>
             <Search size={18} />
-          </div>
+          </Link>
           <hr className="mt-2 mb-4" />
-          <div className="flex justify-between">
+          <Link href="/products" className="flex justify-between">
             <p className="font-medium font">Products</p>
             <ShoppingBag size={18} />
-          </div>
+          </Link>
           <hr className="mt-2 mb-4" />
           <Link href="/store" className="flex justify-between">
             <p className="font-medium font">Store</p>

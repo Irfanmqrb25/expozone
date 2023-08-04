@@ -24,17 +24,19 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
+import AvatarUpload from "@/components/input/AvatarUpload";
 
 import axios from "axios";
+import clsx from "clsx";
 import { Country } from "country-state-city";
 import { FieldValues, useForm, SubmitHandler } from "react-hook-form";
-import AvatarUpload from "@/components/input/AvatarUpload";
-import clsx from "clsx";
 import { Loader2 } from "lucide-react";
 
 const UpdateStoreForm = ({ store }: { store: any }) => {
   const router = useRouter();
   const { toast } = useToast();
+  const [loadingUpdate, setLoadingUpdate] = useState(false);
+  const [loadingDelete, setLoadingDelete] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const {
@@ -70,6 +72,7 @@ const UpdateStoreForm = ({ store }: { store: any }) => {
   const image = watch("image");
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    setLoadingUpdate(true);
     setIsLoading(true);
     try {
       await axios.put(`/api/store`, data);
@@ -86,11 +89,13 @@ const UpdateStoreForm = ({ store }: { store: any }) => {
         variant: "destructive",
       });
     } finally {
+      setLoadingUpdate(false);
       setIsLoading(false);
     }
   };
 
   const handleDeleteStore = async () => {
+    setLoadingDelete(true);
     setIsLoading(true);
     try {
       await axios.delete("/api/store");
@@ -106,6 +111,7 @@ const UpdateStoreForm = ({ store }: { store: any }) => {
         variant: "destructive",
       });
     } finally {
+      setLoadingDelete(false);
       setIsLoading(false);
     }
   };
@@ -215,7 +221,7 @@ const UpdateStoreForm = ({ store }: { store: any }) => {
             />
           </fieldset>
           <div className="flex gap-2">
-            {isLoading ? (
+            {loadingUpdate ? (
               <Button disabled={isLoading} className="w-full">
                 <Loader2 className="w-4 h-4 mr-2 animate-spin" />
                 Please wait
@@ -245,7 +251,7 @@ const UpdateStoreForm = ({ store }: { store: any }) => {
                   <AlertDialogCancel disabled={isLoading}>
                     Cancel
                   </AlertDialogCancel>
-                  {isLoading ? (
+                  {loadingDelete ? (
                     <AlertDialogAction disabled={isLoading}>
                       <Loader2 className="w-4 h-4 mr-2 animate-spin" />
                       Please wait

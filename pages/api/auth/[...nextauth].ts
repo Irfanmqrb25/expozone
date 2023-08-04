@@ -46,7 +46,7 @@ export const authOptions: AuthOptions = {
     }),
   ],
   pages: {
-    signIn: "/home",
+    signIn: "/featured",
   },
   debug: process.env.NODE_ENV === "development",
   session: {
