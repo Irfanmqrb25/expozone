@@ -22,8 +22,8 @@ const StoreTabs = () => {
       href: `/store/orders`,
     },
     {
-      title: "Payments",
-      href: `/store/payments`,
+      title: "Reviews",
+      href: `/store/reviews`,
     },
   ];
 

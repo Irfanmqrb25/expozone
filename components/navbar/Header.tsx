@@ -125,9 +125,9 @@ const Header: React.FC<HeaderProps> = ({ session }) => {
                 HOME
               </Link>
               <Link href="/featured">FEATURED</Link>
-              <p>NEW ARRIVALS</p>
-              <p>PRODUCTS</p>
-              <p>BLOG</p>
+              <Link href="/products">PRODUCTS</Link>
+              <p className="hover:cursor-not-allowed">NEW ARRIVALS</p>
+              <p className="hover:cursor-not-allowed">BLOG</p>
             </ul>
             {isScrolled && (
               <Link
@@ -163,7 +163,7 @@ const Header: React.FC<HeaderProps> = ({ session }) => {
                 fredoka.className
               )}
             >
-              XPOZONE
+              EXPOZONE
             </h1>
           </div>
           <Hamburger
@@ -192,23 +192,29 @@ const Header: React.FC<HeaderProps> = ({ session }) => {
                 <span>Login</span>
               </Link>
               <Link
-                href="/home"
+                href="/"
                 className="flex items-center gap-4 p-3  hover:text-[#23A094]"
               >
                 <AiOutlineHome />
                 <span>Home</span>
               </Link>
-              <li className="flex items-center gap-4 p-3  hover:text-[#23A094]">
+              <Link
+                href="/featured"
+                className="flex items-center gap-4 p-3  hover:text-[#23A094]"
+              >
                 <MdOutlineFeaturedPlayList />
-                <span>Features</span>
-              </li>
+                <span>Featured</span>
+              </Link>
+              <Link
+                href="/products"
+                className=" flex items-center gap-4 p-3  hover:text-[#23A094]"
+              >
+                <IoCubeOutline />
+                <span>Products</span>
+              </Link>
               <li className="flex items-center gap-4 p-3  hover:text-[#23A094]">
                 <MdOutlineSell />
                 <span>New Arrivals</span>
-              </li>
-              <li className=" flex items-center gap-4 p-3  hover:text-[#23A094]">
-                <IoCubeOutline />
-                <span>Products</span>
               </li>
               <li className="flex items-center gap-4 p-3 hover:text-[#23A094]">
                 <BiNews />

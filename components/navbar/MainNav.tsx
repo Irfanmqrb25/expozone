@@ -10,6 +10,7 @@ import AvatarProfile from "./AvatarProfile";
 import { User as UserType, Store as StoreType, Cart } from "@/types";
 import Link from "next/link";
 import CartSheet from "./CartSheet";
+import SearchProduct from "../input/SearchProduct";
 
 interface MainNavProps {
   session?: UserType;
@@ -24,7 +25,7 @@ const MainNav: React.FC<MainNavProps> = ({ session, store, cart }) => {
       <Container>
         <div className="flex items-center justify-between w-full text-white">
           <div className="flex items-center">
-            <div className="lg:hidden">
+            <div className="mt-[5px] lg:hidden">
               <MobileSheet />
             </div>
             <div
@@ -44,24 +45,27 @@ const MainNav: React.FC<MainNavProps> = ({ session, store, cart }) => {
             </div>
             <div className="items-center hidden mt-[6px] ml-10 gap-14 lg:flex">
               <Link href="/featured">Featured</Link>
-              <Link href="/">Discover</Link>
+              <Link href="/discover">Discover</Link>
               <Link href="/products">Products</Link>
               <Link href="/store">Store</Link>
             </div>
           </div>
-          {session ? (
-            <div className="flex items-center gap-3">
-              <CartSheet cart={cart} cartUserId={session.id} />
-              <AvatarProfile session={session} store={store} />
-            </div>
-          ) : (
-            <Link
-              href="/login"
-              className="px-4 py-1 border-2 border-white rounded-sm hover:bg-[#006E7F] hover:text-white"
-            >
-              Sign in
-            </Link>
-          )}
+          <div className="flex items-center justify-end gap-2 md:gap-3">
+            <SearchProduct />
+            {session ? (
+              <div className="flex items-center gap-3">
+                <CartSheet cart={cart} cartUserId={session.id} />
+                <AvatarProfile session={session} store={store} />
+              </div>
+            ) : (
+              <Link
+                href="/login"
+                className="px-4 py-1 border-2 border-white rounded-sm hover:bg-[#006E7F] hover:text-white"
+              >
+                Sign in
+              </Link>
+            )}
+          </div>
         </div>
       </Container>
     </nav>

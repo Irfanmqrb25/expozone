@@ -53,3 +53,28 @@ export async function DELETE(
     throw new Error("Failed to delete product.");
   }
 }
+
+export async function GET(request: Request) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const query = searchParams.get("st") ?? "";
+    const decodedQuery = decodeURIComponent(query);
+
+    const products = await prisma.product.findMany({
+      where: {
+        name: {
+          contains: decodedQuery,
+          mode: "insensitive",
+        },
+      },
+      include: {
+        store: true,
+      },
+    });
+
+    return NextResponse.json(products);
+  } catch (error) {
+    console.log("[GET_PRODUCTS_ERROR]", error);
+    throw new Error("Failed to get products.");
+  }
+}

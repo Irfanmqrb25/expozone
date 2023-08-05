@@ -83,7 +83,7 @@ const LandingPage = async () => {
         <p className="text-2xl tracking-wider md:text-3xl">
           START YOUR JOURNEY!
         </p>
-        <p className="flex text-lg text-center md:text-xl text-neutral-400">
+        <p className="flex px-3 text-lg text-center md:text-xl text-neutral-400">
           Unleash a Profitable Future: Launch Your Store Today, Reap Abundance
           Tomorrow! Let Success Follow Your Every Step.
         </p>
@@ -131,14 +131,14 @@ const LandingPage = async () => {
                   Captivate Customers!
                 </p>
               </div>
-              <div className="flex flex-row items-center gap-2">
+              <div className="flex-row items-center hidden gap-2 md:flex">
                 <VscDebugBreakpointDataUnverified className="text-lg" />
                 <p className={clsx("text-lg", patrickHand.className)}>
                   Unleash Your Inner Entrepreneur: Sell Smarter, Not Harder!
                   Start Small, Scale Steadily, Prosper Endlessly.
                 </p>
               </div>
-              <div className="flex flex-row items-center gap-2">
+              <div className="flex-row items-center hidden gap-2 md:flex">
                 <VscDebugBreakpointDataUnverified className="text-lg" />
                 <p className={clsx("text-lg", patrickHand.className)}>
                   Empower Your Selling Potential: Think Big, Act Bold! Elevate
