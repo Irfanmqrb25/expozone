@@ -146,7 +146,11 @@ const DetailProductPageClient: React.FC<DetailProductPageClientProps> = ({
             <Button
               variant="outline"
               className="w-full border-2 border-black"
-              onClick={() => router.push(`/buy/${product.id}`)}
+              onClick={
+                session
+                  ? () => router.push(`/buy/${product.id}`)
+                  : () => router.push("/login")
+              }
             >
               Buy now
             </Button>

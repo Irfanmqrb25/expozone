@@ -17,7 +17,6 @@ import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "../ui/button";
 import { AspectRatio } from "../ui/aspect-ratio";
 import { DollarSignIcon, ShoppingCart, Wallet } from "lucide-react";
-import { Skeleton } from "@/components/ui/skeleton";
 import FavoriteButton from "../FavoriteButton";
 
 import { ProductData, User } from "@/types";
@@ -112,7 +111,11 @@ const ProductCard: React.FC<ProductCard> = ({ productData, session }) => {
             variant="outline"
             className="flex items-center w-full gap-1 border-2 border-black"
             disabled={loading}
-            onClick={() => router.push(`/buy/${productData.id}`)}
+            onClick={
+              session
+                ? () => router.push(`/buy/${productData.id}`)
+                : () => router.push("/login")
+            }
           >
             <Wallet size={16} />
             Buy
