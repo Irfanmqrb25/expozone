@@ -44,7 +44,7 @@ const OrderCard: React.FC<OrderCardProps> = ({ order }) => {
 
   return (
     <Card
-      className="h-full overflow-hidden border-2 border-black rounded-sm"
+      className="h-full overflow-hidden border-2 border-black rounded-sm shadow-card"
       key={order.id}
     >
       <Link href={`/order/details/${order.id}`}>

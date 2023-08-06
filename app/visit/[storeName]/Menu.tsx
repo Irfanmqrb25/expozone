@@ -2,17 +2,10 @@
 
 import { Separator } from "@/components/ui/separator";
 import clsx from "clsx";
-import { Package2, Sparkles, Store } from "lucide-react";
+import { Package2, Store } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-  BsBookmarkStar,
-  BsBox2,
-  BsBox2Heart,
-  BsQuestion,
-  BsQuestionCircle,
-  BsStar,
-} from "react-icons/bs";
+import { BsQuestionCircle, BsStar } from "react-icons/bs";
 
 interface MenuProps {
   params: string;

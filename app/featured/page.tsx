@@ -4,18 +4,12 @@ import ProductCard from "@/components/card/ProductCard";
 import FeaturedCarousel from "@/components/carousel/FeaturedCarousel";
 import { Card } from "@/components/ui/card";
 
-import getProducts, { IProductParams } from "@/actions/getProducts";
 import getFeatured from "@/actions/getFeatured";
 import getCurrentUser from "@/lib/session";
 
 import { ChevronRightIcon } from "lucide-react";
 
-interface HomePageProps {
-  searchParams: IProductParams;
-}
-
-const HomePage = async ({ searchParams }: HomePageProps) => {
-  // const products = await getProducts(searchParams);
+const FeaturedPage = async () => {
   const session = await getCurrentUser();
   const fashionProducts = await getFeatured({ category: "Fashion" });
   const gamingProducts = await getFeatured({ category: "Gaming" });
@@ -129,4 +123,4 @@ const HomePage = async ({ searchParams }: HomePageProps) => {
   );
 };
 
-export default HomePage;
+export default FeaturedPage;

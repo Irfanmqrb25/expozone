@@ -51,7 +51,7 @@ const MainNav: React.FC<MainNavProps> = ({ session, store, cart }) => {
             </div>
           </div>
           <div className="flex items-center justify-end gap-2 md:gap-3">
-            <SearchProduct />
+            <SearchProduct className="w-fit md:w-[300px] border-2 border-white" />
             {session ? (
               <div className="flex items-center gap-3">
                 <CartSheet cart={cart} cartUserId={session.id} />

@@ -13,7 +13,7 @@ interface Breadcrumbs {
 
 export function BreadcrumbsItem({ href, label, disabled }: BreadcrumbsItem) {
   return disabled ? (
-    <p className="text-gray-400 hover:cursor-default">{label}</p>
+    <p className="text-gray-400 hover:cursor-default line-clamp-1">{label}</p>
   ) : (
     <Link href={href || ""} className="font-medium">
       {label}

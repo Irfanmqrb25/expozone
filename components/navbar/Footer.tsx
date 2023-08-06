@@ -14,7 +14,7 @@ const fredoka = Fredoka({
 
 const Footer = () => {
   return (
-    <footer className="flex flex-col gap-10 px-5 py-10 text-white bg-black md:px-14">
+    <footer className="flex flex-col gap-10 px-5 py-10 text-white bg-black md:px-9">
       <div
         className={clsx(
           "text-2xl md:text-4xl tracking-wider font-semibold",
@@ -23,7 +23,7 @@ const Footer = () => {
       >
         EXPOZONE
       </div>
-      <div className="flex flex-col justify-between gap-10 md:flex-row md:gap-0">
+      <div className="flex flex-col justify-between gap-10 lg:flex-row">
         <div className="flex flex-col gap-5">
           <p
             className={clsx(
@@ -37,7 +37,7 @@ const Footer = () => {
         </div>
         <div
           className={clsx(
-            "flex flex-row md:text-start flex-wrap justify-center md:flex-col gap-7 md:gap-3 md:mr-16",
+            "flex flex-row md:text-start flex-wrap justify-center lg:flex-col gap-7 md:gap-5 lg:gap-3 md:mr-16 md:grid md:grid-cols-2 lg:flex",
             fredoka.className
           )}
         >

@@ -76,14 +76,11 @@ const DetailProductPageClient: React.FC<DetailProductPageClientProps> = ({
   return (
     <div>
       <Breadcrumbs>
-        <BreadcrumbsItem
-          href={`/visit/${storeUrl}`}
-          label={product.store.name}
-        />
+        <BreadcrumbsItem href={`/products`} label="Product" />
         <BreadcrumbsIcon />
         <BreadcrumbsItem
-          href={`/visit/${storeUrl}/products`}
-          label="Products"
+          href={`/products?category=${product?.category}`}
+          label={product?.category}
         />
         <BreadcrumbsIcon />
         <BreadcrumbsItem disabled label={product?.name!} />

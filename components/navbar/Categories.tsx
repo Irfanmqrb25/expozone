@@ -17,62 +17,76 @@ import CategoryItem from "./CategoryItem";
 
 export const categories = [
   {
-    label: "Electronic",
-    description:
-      "Find the various videos you want here such as movies, series, lessons and others.",
-    icon: MdElectricBolt,
-  },
-  {
+    href: "/discover/search?st=video",
     label: "Video",
     description:
-      "Find the various videos you want here such as movies, series, lessons and others.",
+      "Discover captivating movies, series, and educational content.",
     icon: MdOutlineOndemandVideo,
+    color: "bg-[#FF90E8]",
   },
   {
+    href: "/discover/search?st=design",
     label: "Design",
-    description:
-      "Find the various design templates you want here with a variety of attractive and modern looks.",
+    description: "Unlock stunning design templates for your creativity.",
     icon: MdOutlineDesignServices,
+    color: "bg-[#889FE0]",
   },
   {
+    href: "/discover/search?st=books",
     label: "Books",
     description:
-      "Find the books you need such as cookbooks and others in digital form",
+      "Immerse in a digital library with enticing cookbooks and more.",
     icon: FiBookOpen,
+    color: "bg-[#98EECC]",
   },
   {
+    href: "/discover/search?st=music",
     label: "Music",
-    description:
-      "Find your favorite music from pop, rock, and other genres here.",
+    description: "Discover your favorite music from pop to rock and more.",
     icon: MdOutlineMusicNote,
+    color: "bg-[#F1F333]",
   },
   {
+    href: "/discover/search?st=fashion",
     label: "Fashion",
-    description: "Find your fashion from various famous brands in the world.",
+    description: "Elevate your style with trendy fashion from renowned brands.",
     icon: IoShirtOutline,
+    color: "bg-[#FFB6C1]",
   },
   {
+    href: "/discover/search?st=foods",
     label: "Foods",
-    description: "Find your clothes from various famous brands in the world.",
+    description: "Indulge in delectable dishes and culinary delights.",
     icon: IoPizzaOutline,
+    color: "bg-[#FF6347]",
   },
   {
+    href: "/discover/search?st=gaming",
     label: "Gaming",
-    description:
-      "Find and sell various activities in games such as game accounts, game digital money and more.",
+    description: "Embark on thrilling gaming adventures and more.",
     icon: CgGames,
+    color: "bg-[#FF9900]",
   },
   {
+    href: "/discover/search?st=software",
     label: "Software",
-    description:
-      "Find and sell various activities in games such as game accounts, game digital money and more.",
+    description: "Enhance your digital experience with cutting-edge software.",
     icon: HiOutlineCodeBracket,
+    color: "bg-[#F5EFE7]",
   },
   {
+    href: "/discover/search?st=photography",
     label: "Photography",
-    description:
-      "Find unique photos such as natural scenery, and others taken by professionals.",
+    description: "Immerse in unique photos of breathtaking natural scenery.",
     icon: MdOutlinePhotoCameraBack,
+    color: "bg-[#79E0EE]",
+  },
+  {
+    href: "/discover/search?st=electronic",
+    label: "Electronic",
+    description: "Explore electrifying videos, movies, series, and lessons.",
+    icon: MdElectricBolt,
+    color: "bg-[#23A094]",
   },
 ];
 

@@ -8,6 +8,7 @@ import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Card } from "@/components/ui/card";
 import { MapPin } from "lucide-react";
 import Menu from "./Menu";
+import { notFound } from "next/navigation";
 
 const fredoka = Fredoka({
   weight: ["300", "400", "500", "600"],
@@ -36,6 +37,10 @@ export default async function Layout({
   const storeUrl = capitalizeWords(params.storeName);
 
   const store = await getStorebyName({ storeName: storeUrl });
+
+  if (!store) {
+    notFound();
+  }
 
   const storeUrlpath =
     store.name.split(" ").length > 1

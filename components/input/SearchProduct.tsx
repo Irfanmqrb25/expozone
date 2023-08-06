@@ -6,8 +6,13 @@ import { Input } from "../ui/input";
 import { Search } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Button } from "../ui/button";
+import clsx from "clsx";
 
-const SearchProduct = () => {
+interface SearchProductProps {
+  className?: string;
+}
+
+const SearchProduct = ({ className }: SearchProductProps) => {
   const [open, setOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const router = useRouter();
@@ -20,7 +25,10 @@ const SearchProduct = () => {
   return (
     <div className="flex items-center justify-between gap-2">
       <button
-        className="flex items-center justify-between w-fit md:w-[300px] gap-2 px-2 py-[5px] border-2 border-white rounded-sm"
+        className={clsx(
+          "flex items-center justify-between gap-2 px-2 py-[5px] rounded-sm",
+          className
+        )}
         onClick={() => setOpen((prev) => !prev)}
         type="button"
       >
