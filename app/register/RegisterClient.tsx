@@ -80,26 +80,60 @@ const RegisterClient = () => {
           <Input
             type="email"
             id="email"
-            {...register("email", { required: true })}
+            {...register("email", {
+              required: true,
+              pattern: {
+                value: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}$/i,
+                message: "Invalid email address",
+              },
+            })}
             disabled={isLoading}
             className={clsx(
               errors["email"] ? "focus-visible:ring-red-500 border-red-300" : ""
             )}
+            aria-invalid={errors.email ? "true" : "false"}
+            aria-describedby="email-error"
           />
+          {errors.email && (
+            <span
+              id="email-error"
+              className="text-sm text-red-500"
+              role="alert"
+            >
+              {errors.email.message as string}
+            </span>
+          )}
         </div>
         <div className="flex flex-col gap-1">
           <span className="text-sm">Password</span>
           <Input
             type="password"
             id="password"
-            {...register("password", { required: true })}
+            {...register("password", {
+              required: true,
+              minLength: {
+                value: 8,
+                message: "Password must be at least 8 characters long",
+              },
+            })}
             disabled={isLoading}
             className={clsx(
               errors["password"]
                 ? "focus-visible:ring-red-500 border-red-300"
                 : ""
             )}
+            aria-invalid={errors.password ? "true" : "false"}
+            aria-describedby="password-error"
           />
+          {errors.password && (
+            <span
+              id="password-error"
+              className="text-sm text-red-500"
+              role="alert"
+            >
+              {errors.password.message as string}
+            </span>
+          )}
         </div>
         <Button onClick={handleSubmit(onSubmit)} className="mt-2">
           Sign up

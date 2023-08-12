@@ -41,7 +41,7 @@ const SearchProduct = ({ className }: SearchProductProps) => {
       </button>
       <Dialog open={open} onOpenChange={(isOpen) => setOpen(isOpen)}>
         <DialogContent>
-          <DialogHeader>
+          <DialogHeader className="text-start">
             <DialogTitle>Search Products</DialogTitle>
           </DialogHeader>
           <div className="flex items-center gap-3">
@@ -49,9 +49,12 @@ const SearchProduct = ({ className }: SearchProductProps) => {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <Button onClick={handleSearch} className="flex items-center gap-1">
+            <Button
+              onClick={handleSearch}
+              className="flex items-center gap-1 md:w-fit"
+            >
               <Search size={16} />
-              Search
+              <span className="hidden md:block">Search</span>
             </Button>
           </div>
         </DialogContent>
