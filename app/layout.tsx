@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://expozone.vercel.app",
+    url: "https://www.expozone.irfanmuqorib.dev",
     title: "Expozone",
     description:
       "Ecommerce app powered by Next.js 13, Tailwind, Prisma, MongoDB, and more.",
