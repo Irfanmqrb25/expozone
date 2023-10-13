@@ -7,7 +7,7 @@ import Footer from "@/components/navbar/Footer";
 import "swiper/css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL as string),
+  metadataBase: new URL("https://www.expozone.irfanmuqorib.dev"),
   title: {
     default: "Expozone",
     template: `%s - Expozone`,
